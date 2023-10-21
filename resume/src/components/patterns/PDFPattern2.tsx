@@ -6,66 +6,9 @@ import {
   Document,
   StyleSheet,
   Image,
-  Font,
 } from "@react-pdf/renderer";
 
 import { v4 as uuidv4 } from "uuid";
-
-Font.register({
-  family: "Roboto",
-  fonts: [
-    { src: "/fonts/Roboto-Regular.ttf" },
-    { src: "/fonts/Roboto-Bold.ttf", fontWeight: 700 },
-  ],
-});
-
-Font.register({
-  family: "Segoe UI",
-  fonts: [
-    { src: "/fonts/segoeui.ttf" },
-    { src: "/fonts/segoeuib.ttf", fontWeight: 700 },
-  ],
-});
-
-Font.register({
-  family: "Arial",
-  fonts: [
-    { src: "/fonts/ARIAL.ttf" },
-    { src: "/fonts/ARIALBD.ttf", fontWeight: 700 },
-  ],
-});
-
-Font.register({
-  family: "Courier New",
-  fonts: [
-    { src: "/fonts/COUR.ttf" },
-    { src: "/fonts/COURBD.ttf", fontWeight: 700 },
-  ],
-});
-
-Font.register({
-  family: "Times New Roman",
-  fonts: [
-    { src: "/fonts/TIMES.ttf" },
-    { src: "/fonts/TIMESBD.ttf", fontWeight: 700 },
-  ],
-});
-
-Font.register({
-  family: "Georgia",
-  fonts: [
-    { src: "/fonts/GEORGIA.ttf" },
-    { src: "/fonts/GEORGIAB.ttf", fontWeight: 700 },
-  ],
-});
-
-Font.register({
-  family: "Bahnschrift",
-  fonts: [
-    { src: "/fonts/BAHNSCHRIFT.ttf" },
-    { src: "/fonts/BAHNSCHRIFT.ttf", fontWeight: 700 },
-  ],
-});
 
 interface IData {
   data: any;
