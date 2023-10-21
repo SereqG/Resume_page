@@ -37,19 +37,13 @@ const PersonalizationOptions = () => {
           <option className="font-['Segoe_UI']" value="Segoe UI">
             Segoe UI
           </option>
-          <option className="font-['Bahnschrift']" value="Bahnschrift">
-            Bahnschrift
-          </option>
-          <option className="font-['Arial']" value="Arial">
-            Arial
-          </option>
-          <option className="font-['Courier']" value="Courier New">
+          <option className="font-['Courier']" value="Courier">
             Courier New
           </option>
-          <option className="font-['Times_New_Roman']" value="Times New Roman">
+          <option className="font-['Times_New_Roman']" value="Times-Roman">
             Times New Roman
           </option>
-          <option className="font-['Georgia']" value="Georgia">
+          <option className="font-['Georgia']" value="Helvetica">
             Georgia
           </option>
           <option className="font-['Roboto']" value="Roboto">
