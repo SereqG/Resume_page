@@ -6,7 +6,6 @@ interface IFormInput {
   id: string;
   name: string;
   onChange: (e: any) => void;
-  // onKeyDown: (e: any) => void;
 }
 
 const FormInput: FC<IFormInput> = ({ type, label, id, onChange, name }) => {

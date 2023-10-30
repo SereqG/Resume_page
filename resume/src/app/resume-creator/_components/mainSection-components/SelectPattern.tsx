@@ -3,6 +3,8 @@
 import { FC } from "react";
 import Image from "next/image";
 
+import { StaticImageData } from "next/image";
+
 import { v4 as uuidv4 } from "uuid";
 
 import pattern2 from "@/../public/patterns/pattern2.jpg";
@@ -15,7 +17,7 @@ import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 
 interface IPatternProps {
   id: number;
-  pattern: any;
+  pattern: StaticImageData;
 }
 
 const Pattern: FC<IPatternProps> = ({ id, pattern }) => {
@@ -36,7 +38,7 @@ const Pattern: FC<IPatternProps> = ({ id, pattern }) => {
 
 const SelectPattern = () => {
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
-  const patternList: { photo: any; id: number }[] = [
+  const patternList: { photo: StaticImageData; id: number }[] = [
     { photo: pattern1, id: 1 },
     { photo: pattern2, id: 2 },
     { photo: pattern3, id: 3 },

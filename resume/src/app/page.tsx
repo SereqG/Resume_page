@@ -1,7 +1,7 @@
 "use client";
-import TopSection from "./_landing_page_components/TopSection";
-import MiddleSection from "./_landing_page_components/MiddleSection";
-import BottomSection from "./_landing_page_components/BottomSection";
+import TopSection from "./_landing-page-components/TopSection";
+import MiddleSection from "./_landing-page-components/MiddleSection";
+import BottomSection from "./_landing-page-components/BottomSection";
 
 export default function Home() {
   return (
