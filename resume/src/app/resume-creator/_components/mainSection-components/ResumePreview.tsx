@@ -1,4 +1,4 @@
-import PersonalizationOptions from "./_ResumePreviewComponents/PersonalizationOptions";
+import PersonalizationOptions from "./_resume-preview-components/PersonalizationOptions";
 
 const ResumePreview = () => {
   return (

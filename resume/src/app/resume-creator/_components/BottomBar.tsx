@@ -1,4 +1,5 @@
-import { FC } from "react";
+import { Dispatch, SetStateAction, FC } from "react";
+
 import Button from "@/components/buttons/Button";
 
 import DownloadBtn from "@/components/buttons/DownloadBtn";
@@ -8,7 +9,7 @@ import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 
 interface IProps {
   step: number;
-  setStep: any;
+  setStep: Dispatch<SetStateAction<number>>;
 }
 
 const BottomBar: FC<IProps> = ({ step, setStep }) => {
@@ -38,7 +39,7 @@ const BottomBar: FC<IProps> = ({ step, setStep }) => {
       </div>
       <div>
         {step < 3 ? (
-          <Button label="Next >" type="" action={nextStep} />
+          <Button label="Next >" type={undefined} action={nextStep} />
         ) : (
           <DownloadBtn
             selectedPattern={userDataSet.selectedPattern}

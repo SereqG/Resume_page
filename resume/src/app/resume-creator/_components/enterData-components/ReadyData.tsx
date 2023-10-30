@@ -1,17 +1,17 @@
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 
 interface Props {
   name: string;
   label: string;
-  id: any[];
+  id: string[];
 }
 
 const ReadyData: FC<Props> = ({ name, label, id }) => {
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     const arr: any[] = [];
     userDataSet[id[1]].map((e: any) => {

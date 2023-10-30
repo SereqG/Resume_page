@@ -1,5 +1,6 @@
-import { FC } from "react";
-import { useState } from "react";
+import React from "react";
+
+import { FC, useState, Dispatch, SetStateAction } from "react";
 
 import FormInput from "@/components/inputs/FormInput";
 import ReadyData from "./ReadyData";
@@ -11,9 +12,9 @@ import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 interface IDropownElementProps {
   name: string;
   id: string;
-  plusBtnClickFunc: any;
+  plusBtnClickFunc: Dispatch<SetStateAction<string>>;
   currentlyUnrolledElement: string;
-  inputs: Array<{ label: any; type: string; name: string }>;
+  inputs: Array<{ label: string; type: string; name: string }>;
 }
 
 interface IDataState {
@@ -51,19 +52,22 @@ const DropdownElement: FC<IDropownElementProps> = ({
     });
   };
 
-  const stateResetFunc = (e: any) => {
+  const stateResetFunc = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     plusBtnClickFunc("");
     stateReset();
   };
 
-  const updateValues = (e: any, input: any) => {
+  const updateValues = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    input: string
+  ) => {
     const neww = { ...data.inputsValues, [input]: e.target.value };
     const nextData = { ...data, inputsValues: neww };
     setData(nextData);
   };
 
-  const saveData = (e: any) => {
+  const saveData = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     plusBtnClickFunc("");
     if (Object.values(data.inputsValues).join("") !== "") {
@@ -102,7 +106,7 @@ const DropdownElement: FC<IDropownElementProps> = ({
               <div>
                 <button
                   className="h-10 w-10 rounded-full bg-primary-color text-white"
-                  onClick={(e: any) => {
+                  onClick={(e: React.MouseEvent<HTMLElement>) => {
                     e.preventDefault();
                     plusBtnClickFunc(id);
                   }}
@@ -132,16 +136,18 @@ const DropdownElement: FC<IDropownElementProps> = ({
           ) : (
             <div>
               {userDataSet[id].length > 0
-                ? userDataSet[id].map((e: any) => {
-                    return (
-                      <ReadyData
-                        key={e.id}
-                        id={[e.id, id]}
-                        name={name}
-                        label={e.inputsValues[Object.keys(e.inputsValues)[0]]}
-                      />
-                    );
-                  })
+                ? userDataSet[id].map(
+                    (e: { id: string; inputsValues: any; name: string }) => {
+                      return (
+                        <ReadyData
+                          key={e.id}
+                          id={[e.id, id]}
+                          name={name}
+                          label={e.inputsValues[Object.keys(e.inputsValues)[0]]}
+                        />
+                      );
+                    }
+                  )
                 : ""}
             </div>
           )}

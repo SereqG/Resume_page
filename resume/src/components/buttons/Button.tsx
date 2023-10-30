@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 
 interface IButton {
   label: string;
-  action: any;
-  type: any;
+  action: MouseEventHandler<HTMLButtonElement> | undefined;
+  type: "button" | "submit" | "reset" | undefined;
 }
 
 const Button: FC<IButton> = ({ label, action, type }) => {

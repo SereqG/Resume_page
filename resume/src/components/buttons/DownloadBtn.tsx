@@ -28,7 +28,7 @@ const DownloadBtn: FC<IProps> = ({
             <PDFPattern1 data={data} personalization={personalization} />
           }
         >
-          <Button label="Download" type="" action={null} />
+          <Button label="Download" type={undefined} action={undefined} />
         </PDFDownloadLink>
       ) : (
         <>
@@ -39,7 +39,7 @@ const DownloadBtn: FC<IProps> = ({
                 <PDFPattern2 data={data} personalization={personalization} />
               }
             >
-              <Button label="Download" type="" action={null} />
+              <Button label="Download" type={undefined} action={undefined} />
             </PDFDownloadLink>
           ) : (
             <>
@@ -53,7 +53,11 @@ const DownloadBtn: FC<IProps> = ({
                     />
                   }
                 >
-                  <Button label="Download" type="" action={null} />
+                  <Button
+                    label="Download"
+                    type={undefined}
+                    action={undefined}
+                  />
                 </PDFDownloadLink>
               ) : (
                 ""
