@@ -5,7 +5,7 @@ interface IFormInput {
   label: string;
   id: string;
   name: string;
-  onChange: (e: react.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: any) => void;
 }
 
 const FormInput: react.FC<IFormInput> = ({
