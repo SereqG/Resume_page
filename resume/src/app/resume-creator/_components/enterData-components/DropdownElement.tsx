@@ -88,7 +88,7 @@ const DropdownElement: FC<IDropownElementProps> = ({
           <section className="flex h-12 w-full items-center justify-between">
             <h2>{name}</h2>
             {currentlyUnrolledElement === id ? (
-              <div className="flex h-12 w-20 justify-between">
+              <div className="flex h-12 w-20 justify-between bg-white">
                 <button
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-500 hover:bg-yellow-700"
                   onClick={stateResetFunc}
@@ -117,7 +117,7 @@ const DropdownElement: FC<IDropownElementProps> = ({
             )}
           </section>
           {currentlyUnrolledElement === id ? (
-            <section className="mt-6 min-h-[21.5rem] w-full overflow-auto">
+            <section className="mt-6 min-h-[21.5rem] w-full">
               {inputs.map((input) => {
                 return (
                   <FormInput

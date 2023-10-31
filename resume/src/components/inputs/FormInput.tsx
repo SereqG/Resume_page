@@ -1,14 +1,20 @@
-import { FC } from "react";
+import react from "react";
 
 interface IFormInput {
   type?: string;
   label: string;
   id: string;
   name: string;
-  onChange: (e: any) => void;
+  onChange: (e: react.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FormInput: FC<IFormInput> = ({ type, label, id, onChange, name }) => {
+const FormInput: react.FC<IFormInput> = ({
+  type,
+  label,
+  id,
+  onChange,
+  name,
+}) => {
   return (
     <>
       <div className="my-4 w-full">

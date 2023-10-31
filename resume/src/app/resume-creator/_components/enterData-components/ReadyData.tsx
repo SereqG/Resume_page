@@ -14,12 +14,14 @@ const ReadyData: FC<Props> = ({ name, label, id }) => {
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
     const arr: any[] = [];
-    userDataSet[id[1]].map((e: any) => {
-      if (e.id === id[0]) {
-      } else {
-        arr.push(e);
+    userDataSet[id[1]].map(
+      (e: { name: string; id: string; inputsValues: any }) => {
+        if (e.id === id[0]) {
+        } else {
+          arr.push(e);
+        }
       }
-    });
+    );
     setUserDataSet({ ...userDataSet, [id[1]]: arr });
   };
 
