@@ -13,9 +13,9 @@ interface IProps {
     email: string;
     name: string;
     phoneNumber: string;
-    photo: string;
     surname: string;
     websiteURL: string;
+    photo: string;
 
     selectedPattern: number;
 
