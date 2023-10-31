@@ -10,8 +10,27 @@ import {
 
 import { v4 as uuidv4 } from "uuid";
 
-interface IData {
-  data: any;
+interface IProps {
+  data: {
+    email: string;
+    name: string;
+    phoneNumber: string;
+    photo: string;
+    surname: string;
+    websiteURL: string;
+
+    selectedPattern: number;
+
+    achievements: any[];
+    additionalActivity: any[];
+    certificates: any[];
+    characteristic: any[];
+    courses: any[];
+    education: any[];
+    experience: any[];
+    hobbys: any[];
+    skills: any[];
+  };
   personalization: { color: string; fontFamily: string; fontSize: number };
 }
 
@@ -69,7 +88,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PDFPattern3: FC<IData> = ({ data, personalization }) => (
+const PDFPattern3: FC<IProps> = ({ data, personalization }) => (
   <Document>
     <Page
       size="A4"

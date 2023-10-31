@@ -1,5 +1,7 @@
 import { useResumePersonalizationContext } from "@/context/ResumePersonalizationProvider";
 
+import React from "react";
+
 const PersonalizationOptions = () => {
   const { userPersonalization, setUserPersonalization } =
     useResumePersonalizationContext();
@@ -10,7 +12,7 @@ const PersonalizationOptions = () => {
         <label className="text-bold m-2">Font size:</label>
         <select
           className="mr-3 border-2 border-primary-color p-2"
-          onChange={(e: any) => {
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setUserPersonalization({
               ...userPersonalization,
               fontSize: e.target.value,
@@ -27,7 +29,7 @@ const PersonalizationOptions = () => {
         <label className="text-bold m-2">Font:</label>
         <select
           className="mr-3 border-2 border-primary-color p-2"
-          onChange={(e: any) => {
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setUserPersonalization({
               ...userPersonalization,
               fontFamily: e.target.value,
@@ -59,7 +61,7 @@ const PersonalizationOptions = () => {
           id="color"
           name="color"
           className="h-[2.5rem] w-[5rem] appearance-none"
-          onChange={(e: any) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setUserPersonalization({
               ...userPersonalization,
               color: e.target.value,

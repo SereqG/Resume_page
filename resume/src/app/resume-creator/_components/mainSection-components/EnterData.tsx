@@ -90,8 +90,6 @@ const EnterData = () => {
       <div className="hidden w-full md:flex">
         <div className="w-full">{leftSideBody()}</div>
 
-
-
         <EnterDataRightSide displayDropdown={true} />
       </div>
       <div className="flex w-full flex-col items-center justify-center md:hidden">

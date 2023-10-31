@@ -8,8 +8,27 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
-interface IData {
-  data: any;
+interface IProps {
+  data: {
+    email: string;
+    name: string;
+    phoneNumber: string;
+    surname: string;
+    websiteURL: string;
+    photo: string;
+
+    selectedPattern: number;
+
+    achievements: any[];
+    additionalActivity: any[];
+    certificates: any[];
+    characteristic: any[];
+    courses: any[];
+    education: any[];
+    experience: any[];
+    hobbys: any[];
+    skills: any[];
+  };
   personalization: { color: string; fontFamily: string; fontSize: number };
 }
 
@@ -47,7 +66,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PDFPattern1: FC<IData> = ({ data, personalization }) => (
+const PDFPattern1: FC<IProps> = ({ data, personalization }) => (
   <Document>
     <Page size="A4" style={{ fontFamily: personalization.fontFamily }}>
       <View

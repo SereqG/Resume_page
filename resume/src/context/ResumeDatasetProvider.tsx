@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 interface IData {
   selectedPattern: number;
 
-  photo: string;
+  photo: string | null;
   name: string;
   surname: string;
   phoneNumber: string;

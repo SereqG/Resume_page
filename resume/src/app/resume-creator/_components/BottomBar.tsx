@@ -4,18 +4,12 @@ import Button from "@/components/buttons/Button";
 
 import DownloadBtn from "@/components/buttons/DownloadBtn";
 
-import { useResumePersonalizationContext } from "@/context/ResumePersonalizationProvider";
-import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
-
 interface IProps {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
 }
 
 const BottomBar: FC<IProps> = ({ step, setStep }) => {
-  const { userPersonalization } = useResumePersonalizationContext();
-  const { userDataSet } = useUserDataSetContext();
-
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -41,11 +35,7 @@ const BottomBar: FC<IProps> = ({ step, setStep }) => {
         {step < 3 ? (
           <Button label="Next >" type={undefined} action={nextStep} />
         ) : (
-          <DownloadBtn
-            selectedPattern={userDataSet.selectedPattern}
-            data={userDataSet}
-            personalization={userPersonalization}
-          />
+          <DownloadBtn />
         )}
       </div>
     </div>
