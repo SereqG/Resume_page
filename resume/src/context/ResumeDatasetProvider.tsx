@@ -12,15 +12,12 @@ interface IData {
   email: string;
   websiteURL: string;
 
-  experience: [];
-  certificates: [];
-  education: [];
-  courses: [];
-  skills: [];
-  achievements: [];
-  hobbys: [];
-  characteristic: [];
-  additionalActivity: [];
+  experience: {}[];
+  education: {}[];
+  skills: {}[];
+  achievements: {}[];
+  hobbys: {}[];
+  custom_section: {}[];
 }
 
 const UserDataSetContext = createContext({});
@@ -37,14 +34,11 @@ export const UserDataSetContextProvider = ({ children }: any) => {
     websiteURL: "",
 
     experience: [],
-    certificates: [],
     education: [],
-    courses: [],
     skills: [],
     achievements: [],
     hobbys: [],
-    characteristic: [],
-    additionalActivity: [],
+    custom_section: [],
   });
 
   return (

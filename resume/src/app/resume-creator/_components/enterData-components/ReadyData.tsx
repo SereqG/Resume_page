@@ -1,14 +1,14 @@
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 
-import { FC, MouseEvent } from "react";
+import { MouseEvent } from "react";
 
-interface Props {
+interface IProps {
   name: string;
   label: string;
   id: string[];
 }
 
-const ReadyData: FC<Props> = ({ name, label, id }) => {
+const ReadyData = ({ name, label, id }: IProps) => {
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
