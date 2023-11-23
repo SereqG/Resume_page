@@ -1,6 +1,5 @@
-import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
-
 import { MouseEvent } from "react";
+import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 
 interface IProps {
   name: string;
@@ -13,16 +12,14 @@ const ReadyData = ({ name, label, id }: IProps) => {
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const arr: any[] = [];
-    userDataSet[id[1]].map(
-      (e: { name: string; id: string; inputsValues: any }) => {
-        if (e.id === id[0]) {
-        } else {
-          arr.push(e);
-        }
-      }
+
+    const updatedDataSet = userDataSet[id[1]].filter(
+      (item: { id: string }) => item.id !== id[0]
     );
-    setUserDataSet({ ...userDataSet, [id[1]]: arr });
+
+    console.log(updatedDataSet);
+
+    setUserDataSet({ ...userDataSet, [id[1]]: updatedDataSet });
   };
 
   return (

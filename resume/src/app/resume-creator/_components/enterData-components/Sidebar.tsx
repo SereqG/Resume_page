@@ -4,17 +4,14 @@ import { allSectionsList } from "./sections/allSections";
 import SidebarSection from "./SidebarSection";
 import CloseButton from "@/components/buttons/CloseButton";
 
+import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";
+
 interface IProps {
-  currentSection: string;
-  setCurrentSection: React.Dispatch<React.SetStateAction<string>>;
   setIsSidebarVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Sidebar = ({
-  currentSection,
-  setCurrentSection,
-  setIsSidebarVisible,
-}: IProps) => {
+const Sidebar = ({ setIsSidebarVisible }: IProps) => {
+  const { currentSection } = useCurrentSectionContext();
   return (
     <>
       <div className="w-[100vw] h-[100vh] absolute top-0 left-0 bg-black opacity-20 z-10"></div>
@@ -35,7 +32,6 @@ const Sidebar = ({
               <SidebarSection
                 isActive={currentSection === section ? true : false}
                 name={section}
-                setCurrentSection={setCurrentSection}
               />
             </div>
           ))}

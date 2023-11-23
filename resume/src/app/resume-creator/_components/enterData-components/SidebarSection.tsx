@@ -3,15 +3,17 @@ import React from "react";
 import ReadyData from "./ReadyData";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 
+import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";
+
 interface IProps {
   name: string;
   isActive: boolean;
-  setCurrentSection: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SidebarSection = ({ name, isActive, setCurrentSection }: IProps) => {
+const SidebarSection = ({ name, isActive }: IProps) => {
   console.log(name.toLowerCase().trim());
   const { userDataSet } = useUserDataSetContext();
+  const { setCurrentSection } = useCurrentSectionContext();
 
   return (
     <div className="mb-6">
