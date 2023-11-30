@@ -8,6 +8,7 @@ interface IProps {
 }
 
 const ReadyData = ({ name, label, id }: IProps) => {
+  console.log(label);
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {

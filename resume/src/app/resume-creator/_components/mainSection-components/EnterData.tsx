@@ -1,35 +1,34 @@
-"use client";
-
-import { useState } from "react";
-
+import React, { useState } from "react";
 import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";
-
 import Sidebar from "../enterData-components/Sidebar";
-import { sections } from "../enterData-components/sections/allSections";
 
 import PersonalData from "../enterData-components/sections/PersonalData";
-
-import Section from "../enterData-components/sections/Section";
+import Experience from "../enterData-components/sections/Experience";
+import Education from "../enterData-components/sections/Education";
+import Skills from "../enterData-components/sections/Skills";
+import Achievements from "../enterData-components/sections/Achivements";
+import Hobbys from "../enterData-components/sections/Hobbys";
 
 const EnterData = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
   const { currentSection } = useCurrentSectionContext();
-  console.log(sections);
 
   const renderSection = () => {
     switch (currentSection) {
       case "Personal Data":
         return <PersonalData />;
       case "Experience":
-        return <Section dataProps={sections.experience} />;
+        return <Experience />;
       case "Education":
-        return <Section dataProps={sections.education} />;
+        return <Education />;
       case "Skills":
-        return <Section dataProps={sections.skills} />;
+        return <Skills />;
       case "Achievements":
-        return <Section dataProps={sections.achievements} />;
+        return <Achievements />;
       case "Hobbys":
-        return <Section dataProps={sections.hobbys} />;
+        return <Hobbys />;
+      default:
+        return null;
     }
   };
 

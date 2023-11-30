@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFormContext, useController } from "react-hook-form";
 
 interface IFormInput {
@@ -10,7 +9,6 @@ interface IFormInput {
 import React from "react";
 
 const FormInput = ({ type, id, label }: IFormInput) => {
-  const [inputType, setInputType] = useState<string>(type || "text");
   const {
     control,
     formState: { errors },
@@ -31,10 +29,10 @@ const FormInput = ({ type, id, label }: IFormInput) => {
         </label>
         <input
           id={id}
-          type={inputType}
+          type={type}
           className="w-full appearance-none rounded border-2 border-gray-100 bg-gray-100 px-4 py-2 leading-tight text-gray-700 focus:border-primary-color focus:bg-white focus:outline-none"
           placeholder={label}
-          value={field.value}
+          value={field.value || ""}
           onChange={field.onChange}
         />
       </div>

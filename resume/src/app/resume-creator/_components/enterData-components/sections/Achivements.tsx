@@ -1,0 +1,30 @@
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
+import { defaultValuesAchievements } from "@/validation/resumeCreator/allSections/Default";
+import { IAchievements } from "@/validation/resumeCreator/allSections/types";
+import Section from "./Section";
+import { sections } from "./allSections";
+
+const Achievements = () => {
+  const { userDataSet, setUserDataSet } = useUserDataSetContext();
+
+  const form = useForm<IAchievements>({
+    mode: "onChange",
+    defaultValues: defaultValuesAchievements,
+  });
+
+  const onSubmit: SubmitHandler<IAchievements> = (data) => {
+    setUserDataSet({
+      ...userDataSet,
+      achievements: [...userDataSet["achievements"], { inputsValues: data }],
+    });
+
+    form.reset(defaultValuesAchievements);
+  };
+
+  return (
+    <Section form={form} onSubmit={onSubmit} inputProps={sections.education} />
+  );
+};
+
+export default Achievements;

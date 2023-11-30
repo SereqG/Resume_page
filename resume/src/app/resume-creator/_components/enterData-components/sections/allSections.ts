@@ -1,18 +1,8 @@
-interface SectionInput {
-  label: string;
-  type: string;
-  name: string;
-}
-
-interface SectionProps {
-  name: string;
-  id: string;
-  inputs: SectionInput[];
-}
-
-interface Sections {
-  [key: string]: SectionProps;
-}
+import {
+  SectionProps,
+  SectionInput,
+  Sections,
+} from "@/validation/resumeCreatorSection/types";
 
 const createSectionProps = (
   name: string,
@@ -21,6 +11,14 @@ const createSectionProps = (
 ): SectionProps => ({ name, id, inputs });
 
 export const sections: Sections = {
+  personalData: createSectionProps("Personal data", "personalData", [
+    { label: "Photo", type: "file", name: "photo" },
+    { label: "Name", type: "text", name: "name" },
+    { label: "Surname", type: "text", name: "surname" },
+    { label: "Phone number", type: "text", name: "phoneNumber" },
+    { label: "Email", type: "text", name: "email" },
+    { label: "Website URL", type: "text", name: "websiteUR" },
+  ]),
   experience: createSectionProps("Experience", "experience", [
     { label: "Company name", type: "text", name: "companyName" },
     { label: "City", type: "text", name: "city" },

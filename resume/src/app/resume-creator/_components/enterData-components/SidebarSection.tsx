@@ -1,4 +1,4 @@
-import React from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import ReadyData from "./ReadyData";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
@@ -11,10 +11,8 @@ interface IProps {
 }
 
 const SidebarSection = ({ name, isActive }: IProps) => {
-  console.log(name.toLowerCase().trim());
   const { userDataSet } = useUserDataSetContext();
   const { setCurrentSection } = useCurrentSectionContext();
-
   return (
     <div className="mb-6">
       <button
@@ -35,12 +33,14 @@ const SidebarSection = ({ name, isActive }: IProps) => {
           ? userDataSet[name.toLowerCase().trim()].map(
               (e: { id: string; inputsValues: any; name: string }) => {
                 return (
-                  <ReadyData
-                    key={e.id}
-                    id={[e.id, name]}
-                    name={name}
-                    label={e.inputsValues[Object.keys(e.inputsValues)[0]]}
-                  />
+                  <div key={uuidv4()}>
+                    <ReadyData
+                      key={e.id}
+                      id={[e.id, name]}
+                      name={name}
+                      label={e.inputsValues[Object.keys(e.inputsValues)[0]]}
+                    />
+                  </div>
                 );
               }
             )
