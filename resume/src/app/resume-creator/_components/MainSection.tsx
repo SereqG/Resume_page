@@ -4,8 +4,6 @@ import SelectPattern from "./mainSection-components/SelectPattern";
 import EnterData from "./mainSection-components/EnterData";
 import ResumePreview from "./mainSection-components/ResumePreview";
 
-import { CurrentSectionContextProvider } from "@/context/CurrentSectionProvider";
-
 interface IProps {
   step: number;
 }

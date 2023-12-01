@@ -4,8 +4,10 @@ import { defaultValuesSkills } from "@/validation/resumeCreator/allSections/Defa
 import { ISkills } from "@/validation/resumeCreator/allSections/types";
 import Section from "./Section";
 import { sections } from "./allSections";
+import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
 const Skills = () => {
+  const { setIsPopupVisible } = usePopupVisibilityContext();
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
   const form = useForm<ISkills>({
@@ -14,6 +16,7 @@ const Skills = () => {
   });
 
   const onSubmit: SubmitHandler<ISkills> = (data) => {
+    setIsPopupVisible(true);
     setUserDataSet({
       ...userDataSet,
       skills: [...userDataSet["skills"], { inputsValues: data }],

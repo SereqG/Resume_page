@@ -1,18 +1,19 @@
 import { MouseEventHandler } from "react";
+import { MdClose } from "react-icons/md";
 
-interface IButton {
+interface IProps {
   action: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const Button = ({ action }: IButton) => {
+const CloseButton = ({ action }: IProps) => {
   return (
     <button
       onClick={action}
-      className="w-8 h-8 flex items-center justify-center border-2 border-red-600 text-red-600 rounded-full hover:bg-red-600 hover:text-white"
+      className="w-6 h-6 flex items-center justify-center border-2 border-gray-400 text-gray-400 rounded-full hover:border-red-600 hover:text-red-600"
     >
-      X
+      <MdClose />
     </button>
   );
 };
 
-export default Button;
+export default CloseButton;

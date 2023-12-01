@@ -1,5 +1,8 @@
 import { MouseEvent } from "react";
+
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
+
+import CloseButton from "@/components/buttons/CloseButton";
 
 interface IProps {
   name: string;
@@ -18,8 +21,6 @@ const ReadyData = ({ name, label, id }: IProps) => {
       (item: { id: string }) => item.id !== id[0]
     );
 
-    console.log(updatedDataSet);
-
     setUserDataSet({ ...userDataSet, [id[1]]: updatedDataSet });
   };
 
@@ -29,12 +30,7 @@ const ReadyData = ({ name, label, id }: IProps) => {
         <h2 className="font-bold">{name}</h2>
         <p className="font-sm">{label}</p>
       </div>
-      <button
-        onClick={handleClick}
-        className="h-8 w-8 rounded-full bg-red-500 hover:bg-red-600"
-      >
-        X
-      </button>
+      <CloseButton action={handleClick} />
     </div>
   );
 };

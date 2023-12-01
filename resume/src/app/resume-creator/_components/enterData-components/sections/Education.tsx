@@ -6,8 +6,10 @@ import { defaultValuesEducation } from "@/validation/resumeCreator/allSections/D
 import { IEducation } from "@/validation/resumeCreator/allSections/types";
 import Section from "./Section";
 import { sections } from "./allSections";
+import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
 const Education = () => {
+  const { setIsPopupVisible } = usePopupVisibilityContext();
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
   const form = useForm<IEducation>({
     mode: "onChange",
@@ -15,8 +17,7 @@ const Education = () => {
   });
 
   const onSubmit: SubmitHandler<IEducation> = (data) => {
-    console.log(form);
-    console.log(data);
+    setIsPopupVisible(true);
     setUserDataSet({
       ...userDataSet,
       education: [...userDataSet["education"], { inputsValues: data }],

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";
+
 import Sidebar from "../enterData-components/Sidebar";
 
 import PersonalData from "../enterData-components/sections/PersonalData";
@@ -33,9 +35,9 @@ const EnterData = () => {
   };
 
   return (
-    <div>
-      <div>{renderSection()}</div>
-      <div className="flex w-full h-[15vh] items-center justify-between">
+    <div className="w-full flex flex-col items-center">
+      <div className="w-[90vw] max-w-2xl">{renderSection()}</div>
+      <div className="flex w-[80%] h-[15vh] items-center justify-between">
         <h2 className="text-lg font-bold">{currentSection}</h2>
         <button
           className="text-lg font-bold text-primary-color underline"
@@ -43,10 +45,8 @@ const EnterData = () => {
         >
           Manage section
         </button>
-        {isSidebarVisible ? (
+        {isSidebarVisible && (
           <Sidebar setIsSidebarVisible={setIsSidebarVisible} />
-        ) : (
-          ""
         )}
       </div>
     </div>

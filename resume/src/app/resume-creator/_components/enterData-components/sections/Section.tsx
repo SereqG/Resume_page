@@ -1,7 +1,7 @@
 import { FormProvider, SubmitHandler, UseFormReturn } from "react-hook-form";
-import { FaCheck } from "react-icons/fa";
 import FormInput from "@/components/inputs/FormInput";
 import { SectionProps } from "@/validation/resumeCreatorSection/types";
+import Button from "@/components/buttons/Button";
 
 interface IProps {
   form: UseFormReturn<any>;
@@ -9,28 +9,24 @@ interface IProps {
   inputProps: SectionProps;
 }
 
-const Section: React.FC<IProps> = ({ form, onSubmit, inputProps }) => {
-  console.log(inputProps);
+const Section = ({ form, onSubmit, inputProps }: IProps) => {
   return (
-    <div className="flex max-h-[50vh] w-full flex-col overflow-auto p-5">
+    <div className="flex w-full flex-col p-5">
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <button
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-color hover:bg-button-hover-color"
-            type="submit"
-          >
-            <FaCheck />
-          </button>
-          {inputProps.inputs.map((e) => {
-            return (
-              <FormInput
-                key={e.name}
-                type={e.type}
-                label={e.label}
-                id={e.name}
-              />
-            );
-          })}
+          <Button type="submit" label="Submit data" action={undefined} />
+          <div className="my-4 h-[40vh] overflow-auto">
+            {inputProps.inputs.map((e) => {
+              return (
+                <FormInput
+                  key={e.name}
+                  type={e.type}
+                  label={e.label}
+                  id={e.name}
+                />
+              );
+            })}
+          </div>
         </form>
       </FormProvider>
     </div>

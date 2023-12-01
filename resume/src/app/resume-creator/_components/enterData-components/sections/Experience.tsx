@@ -4,8 +4,9 @@ import { defaultValuesExperience } from "@/validation/resumeCreator/allSections/
 import { IExperience } from "@/validation/resumeCreator/allSections/types";
 import Section from "./Section";
 import { sections } from "./allSections";
-
+import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 const Experience = () => {
+  const { setIsPopupVisible } = usePopupVisibilityContext();
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
   const form = useForm<IExperience>({
@@ -14,6 +15,8 @@ const Experience = () => {
   });
 
   const onSubmit: SubmitHandler<IExperience> = (data) => {
+    setIsPopupVisible(true);
+
     setUserDataSet({
       ...userDataSet,
       experience: [...userDataSet["experience"], { inputsValues: data }],

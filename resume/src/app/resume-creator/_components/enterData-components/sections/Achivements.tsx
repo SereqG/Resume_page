@@ -4,9 +4,11 @@ import { defaultValuesAchievements } from "@/validation/resumeCreator/allSection
 import { IAchievements } from "@/validation/resumeCreator/allSections/types";
 import Section from "./Section";
 import { sections } from "./allSections";
+import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
 const Achievements = () => {
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
+  const { setIsPopupVisible } = usePopupVisibilityContext();
 
   const form = useForm<IAchievements>({
     mode: "onChange",
@@ -14,6 +16,7 @@ const Achievements = () => {
   });
 
   const onSubmit: SubmitHandler<IAchievements> = (data) => {
+    setIsPopupVisible(true);
     setUserDataSet({
       ...userDataSet,
       achievements: [...userDataSet["achievements"], { inputsValues: data }],
