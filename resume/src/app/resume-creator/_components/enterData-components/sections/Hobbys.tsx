@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { defaultValuesHobbys } from "@/validation/resumeCreator/allSections/Default";
@@ -19,9 +21,8 @@ const Hobbys = () => {
     setIsPopupVisible(true);
     setUserDataSet({
       ...userDataSet,
-      hobbys: [...userDataSet["hobbys"], { inputsValues: data }],
+      hobbys: [...userDataSet["hobbys"], { inputsValues: data, id: uuidv4() }],
     });
-
     form.reset(defaultValuesHobbys);
   };
 

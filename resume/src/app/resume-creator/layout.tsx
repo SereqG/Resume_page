@@ -1,10 +1,7 @@
 import { ResumePersonalizationProvider } from "@/context/ResumePersonalizationProvider";
 import { UserDataSetContextProvider } from "@/context/ResumeDatasetProvider";
 import { CurrentSectionContextProvider } from "@/context/CurrentSectionProvider";
-import {
-  PopupVisibilityContextProvider,
-  usePopupVisibilityContext,
-} from "@/context/PopupVisibilityProvider";
+import { PopupVisibilityContextProvider } from "@/context/PopupVisibilityProvider";
 
 export default function Layout({ children }: any) {
   return (

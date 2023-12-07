@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { defaultValuesAchievements } from "@/validation/resumeCreator/allSections/Default";
@@ -19,14 +21,21 @@ const Achievements = () => {
     setIsPopupVisible(true);
     setUserDataSet({
       ...userDataSet,
-      achievements: [...userDataSet["achievements"], { inputsValues: data }],
+      achievements: [
+        ...userDataSet["achievements"],
+        { inputsValues: data, id: uuidv4() },
+      ],
     });
 
     form.reset(defaultValuesAchievements);
   };
 
   return (
-    <Section form={form} onSubmit={onSubmit} inputProps={sections.education} />
+    <Section
+      form={form}
+      onSubmit={onSubmit}
+      inputProps={sections.achievements}
+    />
   );
 };
 

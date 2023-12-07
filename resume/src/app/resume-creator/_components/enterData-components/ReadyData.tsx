@@ -11,17 +11,19 @@ interface IProps {
 }
 
 const ReadyData = ({ name, label, id }: IProps) => {
-  console.log(label);
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    console.log(id);
 
-    const updatedDataSet = userDataSet[id[1]].filter(
+    const updatedDataSet = userDataSet[id[1].toLowerCase()].filter(
       (item: { id: string }) => item.id !== id[0]
     );
 
-    setUserDataSet({ ...userDataSet, [id[1]]: updatedDataSet });
+    console.log(updatedDataSet);
+
+    setUserDataSet({ ...userDataSet, [id[1].toLowerCase()]: updatedDataSet });
   };
 
   return (

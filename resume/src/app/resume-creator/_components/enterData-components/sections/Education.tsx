@@ -1,6 +1,6 @@
-import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
-import { FaCheck } from "react-icons/fa";
-import FormInput from "@/components/inputs/FormInput";
+import { v4 as uuidv4 } from "uuid";
+
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { defaultValuesEducation } from "@/validation/resumeCreator/allSections/Default";
 import { IEducation } from "@/validation/resumeCreator/allSections/types";
@@ -18,9 +18,13 @@ const Education = () => {
 
   const onSubmit: SubmitHandler<IEducation> = (data) => {
     setIsPopupVisible(true);
+
     setUserDataSet({
       ...userDataSet,
-      education: [...userDataSet["education"], { inputsValues: data }],
+      education: [
+        ...userDataSet["education"],
+        { inputsValues: data, id: uuidv4() },
+      ],
     });
     form.reset(defaultValuesEducation);
   };

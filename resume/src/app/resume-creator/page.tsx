@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import TopBar from "./_components/TopBar";
 import BottomBar from "./_components/BottomBar";
 import MainSection from "./_components/MainSection";
 
 import Layout from "./layout";
-
-import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
 import Popup from "@/components/other/Popup";
 
