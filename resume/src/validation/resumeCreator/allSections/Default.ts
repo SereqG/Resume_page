@@ -1,14 +1,5 @@
 import * as types from "./types";
 
-export const defaultValuesPersonalData: types.IPersonalData = {
-  photo: "",
-  name: "",
-  surname: "",
-  phoneNumber: "",
-  email: "",
-  websiteURL: "",
-};
-
 export const defaultValuesExperience: types.IExperience = {
   companyName: "",
   city: "",

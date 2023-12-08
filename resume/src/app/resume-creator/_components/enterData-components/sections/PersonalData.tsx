@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
-import { defaultValuesPersonalData } from "@/validation/resumeCreator/allSections/Default";
 import { formSchema } from "@/validation/resumeCreator/allSections/Schema";
 import { sections } from "./allSections";
 import Section from "./Section";
@@ -18,7 +17,14 @@ const PersonalData = () => {
   const form = useForm<IPersonalData>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
-    defaultValues: defaultValuesPersonalData,
+    defaultValues: {
+      photo: userDataSet.photo,
+      name: userDataSet.name,
+      surname: userDataSet.surname,
+      phoneNumber: userDataSet.phoneNumber,
+      email: userDataSet.email,
+      websiteURL: userDataSet.websiteURL,
+    },
   });
 
   const onSubmit: SubmitHandler<IPersonalData> = (data) => {
