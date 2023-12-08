@@ -15,15 +15,17 @@ const ReadyData = ({ name, label, id }: IProps) => {
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    console.log(id);
 
-    const updatedDataSet = userDataSet[id[1].toLowerCase()].filter(
-      (item: { id: string }) => item.id !== id[0]
-    );
+    const updatedDataSet = userDataSet[
+      id[1].toLowerCase().trim().replace(" ", "_")
+    ].filter((item: { id: string }) => item.id !== id[0]);
 
     console.log(updatedDataSet);
 
-    setUserDataSet({ ...userDataSet, [id[1].toLowerCase()]: updatedDataSet });
+    setUserDataSet({
+      ...userDataSet,
+      [id[1].toLowerCase().trim().replace(" ", "_")]: updatedDataSet,
+    });
   };
 
   return (

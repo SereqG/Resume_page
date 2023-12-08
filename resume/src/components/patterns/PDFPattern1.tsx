@@ -20,10 +20,8 @@ interface IProps {
     selectedPattern: number;
 
     achievements: any[];
-    additionalActivity: any[];
+    additional_activity: any[];
     certificates: any[];
-    characteristic: any[];
-    courses: any[];
     education: any[];
     experience: any[];
     hobbys: any[];
@@ -404,6 +402,67 @@ const PDFPattern1: FC<IProps> = ({ data, personalization }) => (
         ) : (
           ""
         )}
+        {data.certificates.length > 0 ? (
+          <View style={{ marginTop: 20 }}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View
+                style={[
+                  styles.dot,
+                  {
+                    width: 15,
+                    height: 15,
+                    backgroundColor: personalization.color,
+                  },
+                ]}
+              ></View>
+              <Text
+                style={{
+                  fontSize: personalization.fontSize,
+                  fontFamily: personalization.fontFamily,
+                  fontWeight: 700,
+                }}
+              >
+                Certyficates
+              </Text>
+            </View>
+            {data.certificates.map((e: any) => {
+              return (
+                <View style={styles.dataContainer} key={e.id}>
+                  <Text
+                    style={{
+                      fontSize: personalization.fontSize / 1.5,
+                      fontFamily: personalization.fontFamily,
+                      fontWeight: 700,
+                    }}
+                  >
+                    {e.inputsValues.certificateName}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: personalization.fontSize / 2,
+                      fontFamily: personalization.fontFamily,
+                      fontWeight: 700,
+                      color: personalization.color,
+                    }}
+                  >
+                    Finish date: {e.inputsValues.endDate}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: personalization.fontSize / 2,
+                      fontFamily: personalization.fontFamily,
+                      color: "#595959",
+                    }}
+                  >
+                    {e.inputsValues.additionalInfo}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
+        ) : (
+          ""
+        )}
 
         {data.skills.length > 0 ? (
           <View style={{ marginTop: 20 }}>
@@ -491,6 +550,112 @@ const PDFPattern1: FC<IProps> = ({ data, personalization }) => (
                   >
                     {e.inputsValues.achievementName}
                   </Text>
+                  <Text
+                    style={{
+                      fontSize: personalization.fontSize / 2,
+                      fontFamily: personalization.fontFamily,
+                      color: "#595959",
+                    }}
+                  >
+                    {e.inputsValues.additionalInfo}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
+        ) : (
+          ""
+        )}
+        {data.additional_activity.length > 0 ? (
+          <View style={{ marginTop: 20 }}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <View
+                style={[
+                  styles.dot,
+                  {
+                    width: 15,
+                    height: 15,
+                    backgroundColor: personalization.color,
+                  },
+                ]}
+              ></View>
+              <Text
+                style={{
+                  fontSize: personalization.fontSize,
+                  fontFamily: personalization.fontFamily,
+                  fontWeight: 700,
+                }}
+              >
+                Additional Activity
+              </Text>
+            </View>
+            {data.additional_activity.map((e: any) => {
+              return (
+                <View style={styles.dataContainer} key={e.id}>
+                  <Text
+                    style={{
+                      fontSize: personalization.fontSize / 1.5,
+                      fontFamily: personalization.fontFamily,
+                      fontWeight: 700,
+                    }}
+                  >
+                    {e.inputsValues.activityName}
+                  </Text>
+                  {e.inputsValues.startDate !== "" &&
+                  e.inputsValues.endDate !== "" ? (
+                    <Text
+                      style={{
+                        fontSize: personalization.fontSize / 2,
+                        fontFamily: personalization.fontFamily,
+                        fontWeight: 700,
+                        color: personalization.color,
+                      }}
+                    >
+                      {e.inputsValues.startDate} - {e.inputsValues.endDate}
+                    </Text>
+                  ) : (
+                    <View>
+                      {e.inputsValues.startDate !== "" ? (
+                        <Text
+                          style={{
+                            fontSize: personalization.fontSize / 2,
+                            fontFamily: personalization.fontFamily,
+                            fontWeight: 700,
+                            color: personalization.color,
+                          }}
+                        >
+                          Start date: {e.inputsValues.startDate}
+                        </Text>
+                      ) : (
+                        <View>
+                          {e.inputsValues.endDate !== "" ? (
+                            <Text
+                              style={{
+                                fontSize: personalization.fontSize / 2,
+                                fontFamily: personalization.fontFamily,
+                                fontWeight: 700,
+                                color: personalization.color,
+                              }}
+                            >
+                              Finish date: {e.inputsValues.endDate}
+                            </Text>
+                          ) : (
+                            ""
+                          )}
+                        </View>
+                      )}
+                    </View>
+                  )}
+                  <View style={{ flexDirection: "row" }}>
+                    <Text
+                      style={{
+                        fontSize: personalization.fontSize / 2,
+                        fontFamily: personalization.fontFamily,
+                      }}
+                    >
+                      {e.inputsValues.city}
+                    </Text>
+                  </View>
                   <Text
                     style={{
                       fontSize: personalization.fontSize / 2,

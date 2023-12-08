@@ -41,3 +41,17 @@ export const defaultValuesHobbys: types.IHobbys = {
   hobbyName: "",
   additionalInfo: "",
 };
+
+export const defaultValuesCertificates: types.ICertificates = {
+  certificateName: "",
+  endDate: "",
+  additionalInfo: "",
+};
+
+export const defaultValuesAdditionalActivity: types.IAdditionalActivity = {
+  activity: "",
+  city: "",
+  startDate: "",
+  endDate: "",
+  additionalInfo: "",
+};

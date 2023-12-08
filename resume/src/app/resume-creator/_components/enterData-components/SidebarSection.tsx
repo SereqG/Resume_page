@@ -30,7 +30,7 @@ const SidebarSection = ({ name, isActive }: IProps) => {
       <div>
         {name.toLowerCase() != "personal data" &&
         userDataSet[name.toLowerCase().trim().replace(" ", "_")].length > 0
-          ? userDataSet[name.toLowerCase().trim()].map(
+          ? userDataSet[name.toLowerCase().trim().replace(" ", "_")].map(
               (e: { id: string; inputsValues: any; name: string }) => {
                 return (
                   <div key={uuidv4()}>

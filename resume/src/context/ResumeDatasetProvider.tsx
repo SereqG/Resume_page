@@ -17,7 +17,8 @@ interface IData {
   skills: {}[];
   achievements: {}[];
   hobbys: {}[];
-  custom_section: {}[];
+  certificates: {}[];
+  additional_activity: {}[];
 }
 
 const UserDataSetContext = createContext({});
@@ -38,7 +39,8 @@ export const UserDataSetContextProvider = ({ children }: any) => {
     skills: [],
     achievements: [],
     hobbys: [],
-    custom_section: [],
+    certificates: [],
+    additional_activity: [],
   });
 
   return (

@@ -39,3 +39,17 @@ export interface IHobbys {
   hobbyName: string;
   additionalInfo: string;
 }
+
+export interface ICertificates {
+  certificateName: string;
+  endDate: string;
+  additionalInfo: string;
+}
+
+export interface IAdditionalActivity {
+  activity: string;
+  city: string;
+  startDate: string;
+  endDate: string;
+  additionalInfo: string;
+}

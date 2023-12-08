@@ -10,6 +10,8 @@ import Education from "../enterData-components/sections/Education";
 import Skills from "../enterData-components/sections/Skills";
 import Achievements from "../enterData-components/sections/Achivements";
 import Hobbys from "../enterData-components/sections/Hobbys";
+import Certificates from "../enterData-components/sections/Certificates";
+import AdditionalActivity from "../enterData-components/sections/AdditionalActivity";
 
 const EnterData = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
@@ -29,6 +31,10 @@ const EnterData = () => {
         return <Achievements />;
       case "Hobbys":
         return <Hobbys />;
+      case "Certificates":
+        return <Certificates />;
+      case "Additional Activity":
+        return <AdditionalActivity />;
       default:
         return null;
     }

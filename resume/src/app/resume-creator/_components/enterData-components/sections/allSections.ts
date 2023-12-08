@@ -51,6 +51,24 @@ export const sections: Sections = {
     { label: "Hobby", type: "text", name: "hobbyName" },
     { label: "Additional info", type: "text", name: "additionalInfo" },
   ]),
+
+  certificates: createSectionProps("Certificates", "certificates", [
+    { label: "Certificate name", type: "text", name: "certificateName" },
+    { label: "End date", type: "date", name: "endDate" },
+    { label: "Additional Info", type: "text", name: "additionalInfo" },
+  ]),
+
+  additionalActivity: createSectionProps(
+    "Additional Activity",
+    "additionalActivity",
+    [
+      { label: "Activity", type: "text", name: "activity" },
+      { label: "City", type: "text", name: "city" },
+      { label: "Start date", type: "date", name: "startDate" },
+      { label: "End date", type: "date", name: "endDate" },
+      { label: "Additional info", type: "text", name: "additionalInfo" },
+    ]
+  ),
 };
 
 export const allSectionsList: string[] = [
@@ -60,4 +78,6 @@ export const allSectionsList: string[] = [
   "Skills",
   "Achievements",
   "Hobbys",
+  "Certificates",
+  "Additional Activity",
 ];
