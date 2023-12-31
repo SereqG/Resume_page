@@ -1,11 +1,11 @@
-import CloseButton from "@/components/buttons/CloseButton";
+import { CloseButton } from "@/components/buttons/CloseButton";
 import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
 interface IProps {
   message: string;
 }
 
-const Popup = ({ message }: IProps) => {
+export const Popup = ({ message }: IProps) => {
   const { isPopupVisible, setIsPopupVisible } = usePopupVisibilityContext();
 
   if (isPopupVisible) {
@@ -31,5 +31,3 @@ const Popup = ({ message }: IProps) => {
     </div>
   );
 };
-
-export default Popup;

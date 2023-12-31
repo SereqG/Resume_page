@@ -17,7 +17,7 @@ export const sections: Sections = {
     { label: "Surname", type: "text", name: "surname" },
     { label: "Phone number", type: "text", name: "phoneNumber" },
     { label: "Email", type: "text", name: "email" },
-    { label: "Website URL", type: "text", name: "websiteUR" },
+    { label: "Website URL", type: "text", name: "websiteURL" },
   ]),
   experience: createSectionProps("Experience", "experience", [
     { label: "Company name", type: "text", name: "companyName" },
@@ -69,6 +69,10 @@ export const sections: Sections = {
       { label: "Additional info", type: "text", name: "additionalInfo" },
     ]
   ),
+
+  footer: createSectionProps("Footer", "footer", [
+    { label: "Footer", type: "text", name: "footer" },
+  ]),
 };
 
 export const allSectionsList: string[] = [
@@ -80,4 +84,5 @@ export const allSectionsList: string[] = [
   "Hobbys",
   "Certificates",
   "Additional Activity",
+  "Footer",
 ];

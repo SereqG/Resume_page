@@ -1,11 +1,11 @@
 import { MouseEventHandler } from "react";
 import { MdClose } from "react-icons/md";
 
-interface IProps {
+interface Props {
   action: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const CloseButton = ({ action }: IProps) => {
+export const CloseButton = ({ action }: Props) => {
   return (
     <button
       onClick={action}
@@ -15,5 +15,3 @@ const CloseButton = ({ action }: IProps) => {
     </button>
   );
 };
-
-export default CloseButton;

@@ -3,21 +3,21 @@ import { v4 as uuidv4 } from "uuid";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { defaultValuesHobbys } from "@/validation/resumeCreator/allSections/Default";
-import { IHobbys } from "@/validation/resumeCreator/allSections/types";
-import Section from "./Section";
+import { hobbys } from "@/validation/resumeCreator/allSections/types";
+import { Section } from "./Section";
 import { sections } from "./allSections";
 import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
-const Hobbys = () => {
+export const Hobbys = () => {
   const { setIsPopupVisible } = usePopupVisibilityContext();
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
-  const form = useForm<IHobbys>({
+  const form = useForm<hobbys>({
     mode: "onChange",
     defaultValues: defaultValuesHobbys,
   });
 
-  const onSubmit: SubmitHandler<IHobbys> = (data) => {
+  const onSubmit: SubmitHandler<hobbys> = (data) => {
     setIsPopupVisible(true);
     setUserDataSet({
       ...userDataSet,
@@ -30,5 +30,3 @@ const Hobbys = () => {
     <Section form={form} onSubmit={onSubmit} inputProps={sections.hobbys} />
   );
 };
-
-export default Hobbys;

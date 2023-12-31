@@ -1,14 +1,12 @@
 import { useFormContext, useController } from "react-hook-form";
 
 interface IFormInput {
-  type?: string;
+  type: string;
   id: string;
   label: string;
 }
 
-import React from "react";
-
-const FormInput = ({ type, id, label }: IFormInput) => {
+export const FormInput = ({ type, id, label }: IFormInput) => {
   const {
     control,
     formState: { errors },
@@ -19,7 +17,7 @@ const FormInput = ({ type, id, label }: IFormInput) => {
   });
 
   return (
-    <div>
+    <>
       <div className="my-4 w-full">
         <label
           className="mb-1 whitespace-nowrap font-bold md:mb-0 md:text-right"
@@ -27,6 +25,7 @@ const FormInput = ({ type, id, label }: IFormInput) => {
         >
           {label}
         </label>
+
         <input
           id={id}
           type={type}
@@ -39,8 +38,6 @@ const FormInput = ({ type, id, label }: IFormInput) => {
       <label className="text-red-600 text-xs font-semibold">
         {errors[id]?.message?.toString()}
       </label>
-    </div>
+    </>
   );
 };
-
-export default FormInput;

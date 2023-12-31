@@ -7,18 +7,17 @@ import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
 import { formSchema } from "@/validation/resumeCreator/allSections/Schema";
 import { sections } from "./allSections";
-import Section from "./Section";
-import { IPersonalData } from "@/validation/resumeCreator/allSections/types";
+import { Section } from "./Section";
+import { personalData } from "@/validation/resumeCreator/allSections/types";
 
-const PersonalData = () => {
+export const PersonalData = () => {
   const { setIsPopupVisible } = usePopupVisibilityContext();
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
-  const form = useForm<IPersonalData>({
+  const form = useForm<personalData>({
     resolver: zodResolver(formSchema),
     mode: "onChange",
     defaultValues: {
-      photo: userDataSet.photo,
       name: userDataSet.name,
       surname: userDataSet.surname,
       phoneNumber: userDataSet.phoneNumber,
@@ -27,12 +26,11 @@ const PersonalData = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<IPersonalData> = (data) => {
+  const onSubmit: SubmitHandler<personalData> = (data) => {
     setIsPopupVisible(true);
 
     setUserDataSet({
       ...userDataSet,
-      photo: data.photo,
       name: data.name,
       surname: data.surname,
       email: data.email,
@@ -49,5 +47,3 @@ const PersonalData = () => {
     />
   );
 };
-
-export default PersonalData;

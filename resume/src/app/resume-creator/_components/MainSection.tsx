@@ -1,21 +1,16 @@
-import { FC } from "react";
+import { SelectPattern } from "./mainSection-components/SelectPattern";
+import { EnterData } from "./mainSection-components/EnterData";
+import { ResumePreview } from "./mainSection-components/ResumePreview";
 
-import SelectPattern from "./mainSection-components/SelectPattern";
-import EnterData from "./mainSection-components/EnterData";
-import ResumePreview from "./mainSection-components/ResumePreview";
-
-interface IProps {
+interface Props {
   step: number;
 }
 
-const MainSection: FC<IProps> = ({ step }) => {
-  if (step === 1) {
-    return <SelectPattern />;
-  } else if (step === 2) {
-    return <EnterData />;
-  } else {
-    return <ResumePreview />;
-  }
-};
-
-export default MainSection;
+export const MainSection = ({ step }: Props) =>
+  step === 1 ? (
+    <SelectPattern />
+  ) : step === 2 ? (
+    <EnterData />
+  ) : (
+    <ResumePreview />
+  );

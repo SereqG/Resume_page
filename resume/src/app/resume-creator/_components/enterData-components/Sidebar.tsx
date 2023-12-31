@@ -1,17 +1,20 @@
 import { v4 as uuidv4 } from "uuid";
-
 import { allSectionsList } from "./sections/allSections";
-import SidebarSection from "./SidebarSection";
-import CloseButton from "@/components/buttons/CloseButton";
-
+import { SidebarSection } from "./SidebarSection";
+import { CloseButton } from "@/components/buttons/CloseButton";
 import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";
 
-interface IProps {
+interface Props {
   setIsSidebarVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Sidebar = ({ setIsSidebarVisible }: IProps) => {
+export const Sidebar = ({ setIsSidebarVisible }: Props) => {
   const { currentSection } = useCurrentSectionContext();
+
+  const closeSidebar = () => {
+    setIsSidebarVisible((prevState) => !prevState);
+  };
+
   return (
     <>
       <div className="w-[100vw] h-[100vh] absolute top-0 left-0 bg-black opacity-20 z-10"></div>
@@ -20,25 +23,18 @@ const Sidebar = ({ setIsSidebarVisible }: IProps) => {
           <h2 className="text-xl font-bold text-primary-color">
             Manage sections
           </h2>
-          <CloseButton
-            action={() => {
-              setIsSidebarVisible((prevState) => !prevState);
-            }}
-          />
+          <CloseButton action={closeSidebar} />
         </div>
         <div className="mt-6 h-[80%] w-full overflow-scroll">
           {allSectionsList.map((section: string) => (
-            <div key={uuidv4()}>
-              <SidebarSection
-                isActive={currentSection === section ? true : false}
-                name={section}
-              />
-            </div>
+            <SidebarSection
+              key={uuidv4()}
+              isActive={currentSection === section}
+              name={section}
+            />
           ))}
         </div>
       </div>
     </>
   );
 };
-
-export default Sidebar;

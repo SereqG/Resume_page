@@ -3,20 +3,20 @@ import { v4 as uuidv4 } from "uuid";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { defaultValuesEducation } from "@/validation/resumeCreator/allSections/Default";
-import { IEducation } from "@/validation/resumeCreator/allSections/types";
-import Section from "./Section";
+import { education } from "@/validation/resumeCreator/allSections/types";
+import { Section } from "./Section";
 import { sections } from "./allSections";
 import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
-const Education = () => {
+export const Education = () => {
   const { setIsPopupVisible } = usePopupVisibilityContext();
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
-  const form = useForm<IEducation>({
+  const form = useForm<education>({
     mode: "onChange",
     defaultValues: defaultValuesEducation,
   });
 
-  const onSubmit: SubmitHandler<IEducation> = (data) => {
+  const onSubmit: SubmitHandler<education> = (data) => {
     setIsPopupVisible(true);
 
     setUserDataSet({
@@ -33,5 +33,3 @@ const Education = () => {
     <Section form={form} onSubmit={onSubmit} inputProps={sections.education} />
   );
 };
-
-export default Education;

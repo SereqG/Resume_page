@@ -1,4 +1,4 @@
-export interface IPersonalData {
+export interface personalData {
   photo: string;
   name: string;
   surname: string;
@@ -7,7 +7,7 @@ export interface IPersonalData {
   websiteURL: string;
 }
 
-export interface IExperience {
+export interface experience {
   companyName: string;
   city: string;
   position: string;
@@ -16,7 +16,7 @@ export interface IExperience {
   additionalInfo: string;
 }
 
-export interface IEducation {
+export interface education {
   level: string;
   city: string;
   institutionName: string;
@@ -25,31 +25,35 @@ export interface IEducation {
   additionalInfo: string;
 }
 
-export interface ISkills {
+export interface skills {
   skillName: string;
   additionalInfo: string;
 }
 
-export interface IAchievements {
+export interface achievements {
   achievementName: string;
   additionalInfo: string;
 }
 
-export interface IHobbys {
+export interface hobbys {
   hobbyName: string;
   additionalInfo: string;
 }
 
-export interface ICertificates {
+export interface certificates {
   certificateName: string;
   endDate: string;
   additionalInfo: string;
 }
 
-export interface IAdditionalActivity {
+export interface additionalActivity {
   activity: string;
   city: string;
   startDate: string;
   endDate: string;
   additionalInfo: string;
+}
+
+export interface footer {
+  footer: string;
 }

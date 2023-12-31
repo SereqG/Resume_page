@@ -1,53 +1,56 @@
 import { v4 as uuidv4 } from "uuid";
-
-import ReadyData from "./ReadyData";
+import { ReadyData } from "./ReadyData";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
-
 import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";
 
-interface IProps {
+interface Props {
   name: string;
   isActive: boolean;
 }
 
-const SidebarSection = ({ name, isActive }: IProps) => {
+export const SidebarSection = ({ name, isActive }: Props) => {
   const { userDataSet } = useUserDataSetContext();
   const { setCurrentSection } = useCurrentSectionContext();
+
+  const isPersonalData = name.toLowerCase() === "personal data";
+  const sectionKey = name.toLowerCase().trim().replace(" ", "_");
+  const sectionData = userDataSet[sectionKey];
+
+  const handleSectionClick = () => {
+    setCurrentSection(name);
+  };
+
   return (
     <div className="mb-6">
       <button
-        onClick={() => setCurrentSection(name)}
-        className="flex items-center w-full hover:font-bold "
+        onClick={handleSectionClick}
+        className="flex items-center w-full hover:font-bold"
       >
         <h2
           className={`text-primary-color ml-2 ${
-            isActive === true ? "font-bold underline " : ""
+            isActive ? "font-bold underline" : ""
           }`}
         >
           {name}
         </h2>
       </button>
-      <div>
-        {name.toLowerCase() != "personal data" &&
-        userDataSet[name.toLowerCase().trim().replace(" ", "_")].length > 0
-          ? userDataSet[name.toLowerCase().trim().replace(" ", "_")].map(
-              (e: { id: string; inputsValues: any; name: string }) => {
-                return (
-                  <div key={uuidv4()}>
-                    <ReadyData
-                      key={e.id}
-                      id={[e.id, name]}
-                      name={name}
-                      label={e.inputsValues[Object.keys(e.inputsValues)[0]]}
-                    />
-                  </div>
-                );
-              }
-            )
-          : ""}
-      </div>
+      {isPersonalData || name.toLowerCase() == "footer" ? null : (
+        <div>
+          {sectionData.length > 0 &&
+            sectionData.map(
+              (e: { id: string; inputsValues: any; name: string }) => (
+                <div key={uuidv4()}>
+                  <ReadyData
+                    key={e.id}
+                    id={[e.id, name]}
+                    name={name}
+                    label={e.inputsValues[Object.keys(e.inputsValues)[0]]}
+                  />
+                </div>
+              )
+            )}
+        </div>
+      )}
     </div>
   );
 };
-
-export default SidebarSection;

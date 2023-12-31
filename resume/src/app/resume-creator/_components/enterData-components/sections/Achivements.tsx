@@ -3,21 +3,21 @@ import { v4 as uuidv4 } from "uuid";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { defaultValuesAchievements } from "@/validation/resumeCreator/allSections/Default";
-import { IAchievements } from "@/validation/resumeCreator/allSections/types";
-import Section from "./Section";
+import { achievements } from "@/validation/resumeCreator/allSections/types";
+import { Section } from "./Section";
 import { sections } from "./allSections";
 import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
-const Achievements = () => {
+export const Achievements = () => {
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
   const { setIsPopupVisible } = usePopupVisibilityContext();
 
-  const form = useForm<IAchievements>({
+  const form = useForm<achievements>({
     mode: "onChange",
     defaultValues: defaultValuesAchievements,
   });
 
-  const onSubmit: SubmitHandler<IAchievements> = (data) => {
+  const onSubmit: SubmitHandler<achievements> = (data) => {
     setIsPopupVisible(true);
     setUserDataSet({
       ...userDataSet,
@@ -38,5 +38,3 @@ const Achievements = () => {
     />
   );
 };
-
-export default Achievements;
