@@ -1,9 +1,14 @@
 import { motion } from "framer-motion";
-
 import Link from "next/link";
 import Image from "next/image";
 
-const TopSection = () => {
+import { Button } from "@/components/buttons/Button";
+
+const styles = {
+  span: "relative before:absolute before:left-[-5%] before:z-[-999] before:h-4/5 before:w-[110%] before:rounded-2xl before:bg-primary-color before:content-['']",
+};
+
+export const TopSection = () => {
   return (
     <motion.div
       className="flex h-[90vh] w-[80vw] items-center justify-center sm:justify-between"
@@ -13,21 +18,12 @@ const TopSection = () => {
     >
       <section className="flex w-[16rem] flex-col sm:w-[22rem] lg:w-[26rem]">
         <h1 className="text-4xl sm:text-5xl xl:text-6xl">
-          <span className="relative before:absolute before:left-[-5%] before:z-[-999] before:h-4/5 before:w-[110%] before:rounded-2xl before:bg-primary-color before:content-['']">
-            Create
-          </span>{" "}
-          your dream{" "}
-          <span className="relative before:absolute before:left-[-5%] before:z-[-999] before:h-4/5 before:w-[110%] before:rounded-2xl before:bg-primary-color before:content-['']">
-            resume
-          </span>{" "}
-          with us!
+          <span className={styles.span}>Create</span> your dream{" "}
+          <span className={styles.span}>resume</span> with us!
         </h1>
-        <Link
-          className=" mt-10 flex h-12 w-full items-center justify-center rounded-lg bg-primary-color font-bold text-white hover:bg-button-hover-color sm:w-40"
-          href={"/resume-creator"}
-        >
-          Create a resume
-        </Link>
+        <Button>
+          <Link href={"/resume-creator"}>Create a resume</Link>
+        </Button>
       </section>
       <section className="hidden lg:block">
         <Image
@@ -41,5 +37,3 @@ const TopSection = () => {
     </motion.div>
   );
 };
-
-export default TopSection;

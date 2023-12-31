@@ -1,133 +1,63 @@
-"use client";
-
 import { useState } from "react";
 
-import FormInput from "@/components/inputs/FormInput";
-import EnterDataRightSide from "../enterData-components/EnterDataRightSide";
+import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";
 
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { Sidebar } from "../enterData-components/Sidebar";
 
-import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
+import { PersonalData } from "../enterData-components/sections/PersonalData";
+import { Experience } from "../enterData-components/sections/Experience";
+import { Education } from "../enterData-components/sections/Education";
+import { Skills } from "../enterData-components/sections/Skills";
+import { Achievements } from "../enterData-components/sections/Achivements";
+import { Hobbys } from "../enterData-components/sections/Hobbys";
+import { Certificates } from "../enterData-components/sections/Certificates";
+import { AdditionalActivity } from "../enterData-components/sections/AdditionalActivity";
+import { Footer } from "../enterData-components/sections/Footer";
 
-const EnterData = () => {
-  const { userDataSet, setUserDataSet } = useUserDataSetContext();
-  const [stepMobile, setStepMobile] = useState<number>(1);
+export const EnterData = () => {
+  const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
+  const { currentSection } = useCurrentSectionContext();
 
-  const leftSideBody = () => {
-    return (
-      <div className="flex max-h-[22rem] w-full flex-col overflow-auto p-5 md:max-h-[26rem]">
-        <FormInput
-          type="file"
-          label="Photo"
-          id="photo"
-          name="photo"
-          onChange={(e) => {
-            setUserDataSet({
-              ...userDataSet,
-              photo: URL.createObjectURL(e.target.files[0]),
-            });
-          }}
-        />
-        <FormInput
-          type="text"
-          label="Name"
-          id="name"
-          name="name"
-          onChange={(e) =>
-            setUserDataSet({ ...userDataSet, name: e.target.value })
-          }
-        />
-        <FormInput
-          type="text"
-          label="Surname"
-          id="surname"
-          name="surname"
-          onChange={(e) =>
-            setUserDataSet({ ...userDataSet, surname: e.target.value })
-          }
-        />
-        <FormInput
-          type="text"
-          label="Phone number"
-          id="phoneNumber"
-          name="phoneNumber"
-          onChange={(e) =>
-            setUserDataSet({ ...userDataSet, phoneNumber: e.target.value })
-          }
-        />
-        <FormInput
-          type="email"
-          label="Email address"
-          id="email"
-          name="email"
-          onChange={(e) =>
-            setUserDataSet({ ...userDataSet, email: e.target.value })
-          }
-        />
-        <FormInput
-          type="url"
-          label="Website URL address"
-          id="websiteURL"
-          name="websiteURL"
-          onChange={(e) =>
-            setUserDataSet({ ...userDataSet, websiteURL: e.target.value })
-          }
-        />
-      </div>
-    );
-  };
-
-  const switchStepMobile = () => {
-    if (stepMobile === 1) {
-      setStepMobile(2);
-    } else {
-      setStepMobile(1);
+  const renderSection = () => {
+    switch (currentSection) {
+      case "Personal Data":
+        return <PersonalData />;
+      case "Experience":
+        return <Experience />;
+      case "Education":
+        return <Education />;
+      case "Skills":
+        return <Skills />;
+      case "Achievements":
+        return <Achievements />;
+      case "Hobbys":
+        return <Hobbys />;
+      case "Certificates":
+        return <Certificates />;
+      case "Additional Activity":
+        return <AdditionalActivity />;
+      case "Footer":
+        return <Footer />;
+      default:
+        return null;
     }
   };
 
   return (
-    <div className="w-[100vw] md:px-[10%]">
-      <div className="hidden w-full md:flex">
-        <div className="w-full">{leftSideBody()}</div>
-
-        <EnterDataRightSide displayDropdown={true} />
-      </div>
-      <div className="flex w-full flex-col items-center justify-center md:hidden">
-        {stepMobile === 1 ? (
-          <div className="w-full">{leftSideBody()}</div>
-        ) : (
-          <EnterDataRightSide displayDropdown={true} />
+    <div className="w-full flex flex-col items-center">
+      <div className="w-[90vw] max-w-2xl">{renderSection()}</div>
+      <div className="flex w-[80%] h-[15vh] items-center justify-between">
+        <h2 className="text-lg font-bold">{currentSection}</h2>
+        <button
+          className="text-lg font-bold text-primary-color underline"
+          onClick={() => setIsSidebarVisible(true)}
+        >
+          Manage section
+        </button>
+        {isSidebarVisible && (
+          <Sidebar setIsSidebarVisible={setIsSidebarVisible} />
         )}
-
-        <div className="mt-6 flex w-48 justify-between">
-          {stepMobile === 2 ? (
-            <button
-              className="rounded-full bg-primary-color p-4 hover:bg-button-hover-color"
-              onClick={switchStepMobile}
-            >
-              <AiOutlineArrowLeft color="white" />
-            </button>
-          ) : (
-            <button className="rounded-full bg-gray-300 p-4">
-              <AiOutlineArrowLeft color="white" />
-            </button>
-          )}
-          {stepMobile === 1 ? (
-            <button
-              className="rounded-full bg-primary-color p-4 hover:bg-button-hover-color"
-              onClick={switchStepMobile}
-            >
-              <AiOutlineArrowRight color="white" />
-            </button>
-          ) : (
-            <button className="rounded-full bg-gray-300 p-4">
-              <AiOutlineArrowRight color="white" />
-            </button>
-          )}
-        </div>
       </div>
     </div>
   );
 };
-
-export default EnterData;

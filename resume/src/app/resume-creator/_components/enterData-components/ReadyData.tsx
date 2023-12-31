@@ -1,6 +1,6 @@
+import { MouseEvent } from "react";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
-
-import { FC, MouseEvent } from "react";
+import { CloseButton } from "@/components/buttons/CloseButton";
 
 interface Props {
   name: string;
@@ -8,37 +8,30 @@ interface Props {
   id: string[];
 }
 
-const ReadyData: FC<Props> = ({ name, label, id }) => {
+export const ReadyData = ({ name, label, id }: Props) => {
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
   const handleClick = (e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    const arr: any[] = [];
-    userDataSet[id[1]].map(
-      (e: { name: string; id: string; inputsValues: any }) => {
-        if (e.id === id[0]) {
-        } else {
-          arr.push(e);
-        }
-      }
+
+    const sectionKey = id[1].toLowerCase().trim().replace(" ", "_");
+    const updatedDataSet = userDataSet[sectionKey].filter(
+      (item: { id: string }) => item.id !== id[0]
     );
-    setUserDataSet({ ...userDataSet, [id[1]]: arr });
+
+    setUserDataSet({
+      ...userDataSet,
+      [sectionKey]: updatedDataSet,
+    });
   };
 
   return (
-    <div className="mb-2 mr-2 flex min-h-[3.5rem] w-[30%] min-w-[14rem] items-center justify-between rounded-2xl border-2 border-primary-color p-2">
-      <div className="flex w-[75%] flex-col justify-center">
+    <div className="mb-2 mr-2 flex min-h-[3.5rem] min-w-[14rem] w-[75%] md:w-[30%] items-center justify-between rounded-2xl border-2 border-primary-color p-2">
+      <div className="flex w-full flex-col justify-center">
         <h2 className="font-bold">{name}</h2>
         <p className="font-sm">{label}</p>
       </div>
-      <button
-        onClick={handleClick}
-        className="h-8 w-8 rounded-full bg-red-500 hover:bg-red-600"
-      >
-        X
-      </button>
+      <CloseButton action={handleClick} />
     </div>
   );
 };
-
-export default ReadyData;

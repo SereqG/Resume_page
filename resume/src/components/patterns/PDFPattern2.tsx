@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React from "react";
 import {
   Page,
   Text,
@@ -8,31 +8,13 @@ import {
   Image,
 } from "@react-pdf/renderer";
 
-import { v4 as uuidv4 } from "uuid";
+import { PatternProps } from "@/validation/resumeCreator/patterns/types";
 
-interface IProps {
-  data: {
-    email: string;
-    name: string;
-    phoneNumber: string;
-    photo: string;
-    surname: string;
-    websiteURL: string;
-
-    selectedPattern: number;
-
-    achievements: any[];
-    additionalActivity: any[];
-    certificates: any[];
-    characteristic: any[];
-    courses: any[];
-    education: any[];
-    experience: any[];
-    hobbys: any[];
-    skills: any[];
-  };
-  personalization: { color: string; fontFamily: string; fontSize: number };
-}
+import {
+  renderSection,
+  renderContactInfoPattern2,
+  renderFooter,
+} from "./RenderFunctions";
 
 const styles = StyleSheet.create({
   photoContainer: {
@@ -46,19 +28,13 @@ const styles = StyleSheet.create({
     width: 140,
     height: 140,
   },
-  dot: {
-    width: 4,
-    height: 4,
-    marginRight: 8,
-    borderRadius: 50,
+
+  headingContainer: {
+    marginTop: 5,
   },
   dataContainer: {
-    marginTop: 10,
-  },
-  elementContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 2,
+    flexDirection: "column",
+    marginTop: 8,
   },
   squere: {
     width: 40,
@@ -77,9 +53,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     paddingLeft: 30,
   },
-  surname: {
-    fontWeight: 700,
-  },
+
   sectionSquere: {
     position: "absolute",
     left: -10,
@@ -89,7 +63,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PDFPattern2: FC<IProps> = ({ data, personalization }) => (
+export const PDFPattern2 = ({ data, personalization }: PatternProps) => (
   <Document>
     <Page
       size="A4"
@@ -111,14 +85,12 @@ const PDFPattern2: FC<IProps> = ({ data, personalization }) => (
         ]}
       />
       <View style={styles.section}>
-        {data.photo !== "" ? (
+        {data.photo !== "" && (
           <View style={styles.photoContainer}>
             <Image src={data.photo} style={styles.photo} />
           </View>
-        ) : (
-          ""
         )}
-        <View style={styles.dataContainer}>
+        <View style={styles.headingContainer}>
           <Text
             style={{
               fontSize: personalization.fontSize,
@@ -140,8 +112,7 @@ const PDFPattern2: FC<IProps> = ({ data, personalization }) => (
             {data.surname}
           </Text>
         </View>
-        {data.phoneNumber !== "" || data.websiteURL !== "" || data.email}
-        <View style={styles.dataContainer}>
+        <View style={styles.headingContainer}>
           <View style={{ position: "relative" }}>
             <View
               style={[
@@ -154,809 +125,69 @@ const PDFPattern2: FC<IProps> = ({ data, personalization }) => (
             <Text
               style={{
                 fontSize: personalization.fontSize,
-                fontFamily: personalization.fontFamily,
-                fontWeight: 700,
+                fontFamily: `${
+                  personalization.fontFamily != "Times-Roman"
+                    ? personalization.fontFamily
+                    : "Times"
+                }-Bold`,
               }}
             >
               Contact
             </Text>
           </View>
-          {data.phoneNumber !== "" ? (
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginBottom: 2,
-              }}
-            >
-              <View
-                style={[styles.dot, { backgroundColor: personalization.color }]}
-              ></View>
-              <Text
-                style={{
-                  fontSize: personalization.fontSize / 1.5,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                {data.phoneNumber}
-              </Text>
-            </View>
-          ) : (
-            ""
-          )}
-          {data.email !== "" ? (
-            <View style={styles.elementContainer}>
-              <View
-                style={[styles.dot, { backgroundColor: personalization.color }]}
-              ></View>
-              <Text
-                style={{
-                  fontSize: personalization.fontSize / 1.5,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                {data.email}
-              </Text>
-            </View>
-          ) : (
-            ""
-          )}
-          {data.websiteURL !== "" ? (
-            <View style={styles.elementContainer}>
-              <View
-                style={[styles.dot, { backgroundColor: personalization.color }]}
-              ></View>
-              <Text
-                style={{
-                  fontSize: personalization.fontSize / 1.5,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                {data.websiteURL}
-              </Text>
-            </View>
-          ) : (
-            ""
-          )}
+          {renderContactInfoPattern2(false, data.phoneNumber, personalization)}
+          {renderContactInfoPattern2(false, data.email, personalization)}
+          {renderContactInfoPattern2(true, data.websiteURL, personalization)}
         </View>
 
-        {data.skills.length > 0 ? (
-          <View style={styles.dataContainer}>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Skills
-              </Text>
-            </View>
+        {renderSection("Skills", data.skills, personalization, {
+          headingContainer: styles.headingContainer,
+          headingDot: styles.sectionSquere,
+          dataContainer: styles.dataContainer,
+        })}
 
-            {data.skills.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={styles.elementContainer}>
-                  <View
-                    style={[
-                      styles.dot,
-                      { backgroundColor: personalization.color },
-                    ]}
-                  ></View>
-                  <View key={uuidv4()}>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 1.5,
-                        fontFamily: personalization.fontFamily,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {e.inputsValues.skillName}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        color: "#595959",
-                      }}
-                    >
-                      {e.inputsValues.additionalInfo}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
-        )}
+        {renderSection("Hobbies", data.hobbys, personalization, {
+          headingContainer: styles.headingContainer,
+          headingDot: styles.sectionSquere,
+          dataContainer: styles.dataContainer,
+        })}
 
-        {data.characteristic.length > 0 ? (
-          <View style={styles.dataContainer}>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Characteristic
-              </Text>
-            </View>
-            {data.characteristic.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={styles.elementContainer}>
-                  <View
-                    style={[
-                      styles.dot,
-                      { backgroundColor: personalization.color },
-                    ]}
-                  ></View>
-                  <View key={uuidv4()}>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 1.5,
-                        fontFamily: personalization.fontFamily,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {e.inputsValues.characteristicName}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        color: "#595959",
-                      }}
-                    >
-                      {e.inputsValues.additionalInfo}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
-        )}
-
-        {data.hobbys.length > 0 ? (
-          <View style={styles.dataContainer}>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Hobbys
-              </Text>
-            </View>
-            {data.hobbys.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={styles.elementContainer}>
-                  <View
-                    style={[
-                      styles.dot,
-                      { backgroundColor: personalization.color },
-                    ]}
-                  ></View>
-                  <View key={uuidv4()}>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 1.5,
-                        fontFamily: personalization.fontFamily,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {e.inputsValues.hobbyName}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        color: "#595959",
-                      }}
-                    >
-                      {e.inputsValues.additionalInfo}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
-        )}
+        {renderSection("Achievements", data.achievements, personalization, {
+          headingContainer: styles.headingContainer,
+          headingDot: styles.sectionSquere,
+          dataContainer: styles.dataContainer,
+        })}
       </View>
-
       <View style={styles.section}>
-        {data.experience.length > 0 ? (
-          <View>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Experience
-              </Text>
-            </View>
-            {data.experience.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={{ marginBottom: 6 }}>
-                  <View>
-                    <View style={styles.elementContainer}>
-                      <View
-                        style={[
-                          styles.dot,
-                          { backgroundColor: personalization.color },
-                        ]}
-                      ></View>
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 1.5,
-                          fontFamily: personalization.fontFamily,
-                          fontWeight: 700,
-                        }}
-                      >
-                        {e.inputsValues.position}
-                      </Text>
-                    </View>
-                    {e.inputsValues.startDate !== "" &&
-                    e.inputsValues.endDate !== "" ? (
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 2,
-                          fontFamily: personalization.fontFamily,
-                          fontWeight: 700,
-                          color: personalization.color,
-                        }}
-                      >
-                        {e.inputsValues.startDate} - {e.inputsValues.endDate}
-                      </Text>
-                    ) : (
-                      <View>
-                        {e.inputsValues.startDate !== "" ? (
-                          <Text
-                            style={{
-                              fontSize: personalization.fontSize / 2,
-                              fontFamily: personalization.fontFamily,
-                              fontWeight: 700,
-                              color: personalization.color,
-                            }}
-                          >
-                            Start date: {e.inputsValues.startDate}
-                          </Text>
-                        ) : (
-                          <View>
-                            {e.inputsValues.endDate !== "" ? (
-                              <Text
-                                style={{
-                                  fontSize: personalization.fontSize / 2,
-                                  fontFamily: personalization.fontFamily,
-                                  fontWeight: 700,
-                                  color: personalization.color,
-                                }}
-                              >
-                                Finish date: {e.inputsValues.endDate}
-                              </Text>
-                            ) : (
-                              ""
-                            )}
-                          </View>
-                        )}
-                      </View>
-                    )}
-                    <View style={{ flexDirection: "row" }}>
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 2,
-                          fontFamily: personalization.fontFamily,
-                          fontWeight: 700,
-                          marginRight: personalization.fontSize / 4,
-                        }}
-                      >
-                        {e.inputsValues.companyName},
-                      </Text>
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 2,
-                          fontFamily: personalization.fontFamily,
-                        }}
-                      >
-                        {e.inputsValues.city}
-                      </Text>
-                    </View>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        color: "#595959",
-                      }}
-                    >
-                      {e.inputsValues.additionalInfo}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
-        )}
-        {data.education.length > 0 ? (
-          <View style={styles.dataContainer}>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Education
-              </Text>
-            </View>
-            {data.education.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={{ marginBottom: 6 }}>
-                  <View>
-                    <View style={styles.elementContainer}>
-                      <View
-                        style={[
-                          styles.dot,
-                          { backgroundColor: personalization.color },
-                        ]}
-                      ></View>
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 1.5,
-                          fontFamily: personalization.fontFamily,
-                          fontWeight: 700,
-                        }}
-                      >
-                        {e.inputsValues.institutionName}
-                      </Text>
-                    </View>
-                    {e.inputsValues.startDate !== "" &&
-                    e.inputsValues.endDate !== "" ? (
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 2,
-                          fontFamily: personalization.fontFamily,
-                          fontWeight: 700,
-                          color: personalization.color,
-                        }}
-                      >
-                        {e.inputsValues.startDate} - {e.inputsValues.endDate}
-                      </Text>
-                    ) : (
-                      <View>
-                        {e.inputsValues.startDate !== "" ? (
-                          <Text
-                            style={{
-                              fontSize: personalization.fontSize / 2,
-                              fontFamily: personalization.fontFamily,
-                              fontWeight: 700,
-                              color: personalization.color,
-                            }}
-                          >
-                            Start date: {e.inputsValues.startDate}
-                          </Text>
-                        ) : (
-                          <View>
-                            {e.inputsValues.endDate !== "" ? (
-                              <Text
-                                style={{
-                                  fontSize: personalization.fontSize / 2,
-                                  fontFamily: personalization.fontFamily,
-                                  fontWeight: 700,
-                                  color: personalization.color,
-                                }}
-                              >
-                                Finish date: {e.inputsValues.endDate}
-                              </Text>
-                            ) : (
-                              ""
-                            )}
-                          </View>
-                        )}
-                      </View>
-                    )}
-                    <View style={{ flexDirection: "row" }}>
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 2,
-                          fontFamily: personalization.fontFamily,
-                          fontWeight: 700,
-                          marginRight: personalization.fontSize / 4,
-                        }}
-                      >
-                        {e.inputsValues.level}
-                      </Text>
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 2,
-                          fontFamily: personalization.fontFamily,
-                        }}
-                      >
-                        {e.inputsValues.city}
-                      </Text>
-                    </View>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        color: "#595959",
-                      }}
-                    >
-                      {e.inputsValues.additionalInfo}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
-        )}
-        {data.certificates.length > 0 ? (
-          <View style={styles.dataContainer}>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Certificates
-              </Text>
-            </View>
-            {data.certificates.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={{ marginBottom: 6 }}>
-                  <View>
-                    <View style={styles.elementContainer}>
-                      <View
-                        style={[
-                          styles.dot,
-                          { backgroundColor: personalization.color },
-                        ]}
-                      ></View>
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 1.5,
-                          fontFamily: personalization.fontFamily,
-                          fontWeight: 700,
-                        }}
-                      >
-                        {e.inputsValues.certificateName}
-                      </Text>
-                    </View>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        fontWeight: 700,
-                        color: personalization.color,
-                      }}
-                    >
-                      Finish date: {e.inputsValues.endDate}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        color: "#595959",
-                      }}
-                    >
-                      {e.inputsValues.additionalInfo}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
-        )}
-        {data.courses.length > 0 ? (
-          <View style={styles.dataContainer}>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Courses
-              </Text>
-            </View>
-            {data.courses.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={{ marginBottom: 6 }}>
-                  <View>
-                    <View style={styles.elementContainer}>
-                      <View
-                        style={[
-                          styles.dot,
-                          { backgroundColor: personalization.color },
-                        ]}
-                      ></View>
-                      <Text
-                        style={{
-                          fontSize: personalization.fontSize / 1.5,
-                          fontFamily: personalization.fontFamily,
-                          fontWeight: 700,
-                        }}
-                      >
-                        {e.inputsValues.courseName}
-                      </Text>
-                    </View>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        fontWeight: 700,
-                        color: personalization.color,
-                      }}
-                    >
-                      Finish date: {e.inputsValues.endDate}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        color: "#595959",
-                      }}
-                    >
-                      {e.inputsValues.additionalInfo}
-                    </Text>
-                  </View>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
-        )}
-        {data.achievements.length > 0 ? (
-          <View style={styles.dataContainer}>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Achievements
-              </Text>
-            </View>
-            {data.achievements.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={{ marginBottom: 6 }}>
-                  <View style={styles.elementContainer}>
-                    <View
-                      style={[
-                        styles.dot,
-                        { backgroundColor: personalization.color },
-                      ]}
-                    ></View>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 1.5,
-                        fontFamily: personalization.fontFamily,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {e.inputsValues.achievementName}
-                    </Text>
-                  </View>
-                  <Text
-                    style={{
-                      fontSize: personalization.fontSize / 2,
-                      fontFamily: personalization.fontFamily,
-                      color: "#595959",
-                    }}
-                  >
-                    {e.inputsValues.additionalInfo}
-                  </Text>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
-        )}
-        {data.additionalActivity.length > 0 ? (
-          <View style={styles.dataContainer}>
-            <View style={{ position: "relative" }}>
-              <View
-                style={[
-                  styles.sectionSquere,
-                  {
-                    backgroundColor: personalization.color,
-                  },
-                ]}
-              />
-              <Text
-                style={{
-                  fontSize: personalization.fontSize,
-                  fontFamily: personalization.fontFamily,
-                  fontWeight: 700,
-                }}
-              >
-                Additional activity
-              </Text>
-            </View>
-            {data.additionalActivity.map((e: any) => {
-              return (
-                <View key={uuidv4()} style={{ marginBottom: 6 }}>
-                  <View style={styles.elementContainer}>
-                    <View
-                      style={[
-                        styles.dot,
-                        { backgroundColor: personalization.color },
-                      ]}
-                    ></View>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 1.5,
-                        fontFamily: personalization.fontFamily,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {e.inputsValues.activityName}
-                    </Text>
-                  </View>
-                  {e.inputsValues.startDate !== "" &&
-                  e.inputsValues.endDate !== "" ? (
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                        fontWeight: 700,
-                        color: personalization.color,
-                      }}
-                    >
-                      {e.inputsValues.startDate} - {e.inputsValues.endDate}
-                    </Text>
-                  ) : (
-                    <View>
-                      {e.inputsValues.startDate !== "" ? (
-                        <Text
-                          style={{
-                            fontSize: personalization.fontSize / 2,
-                            fontFamily: personalization.fontFamily,
-                            fontWeight: 700,
-                            color: personalization.color,
-                          }}
-                        >
-                          Start date: {e.inputsValues.startDate}
-                        </Text>
-                      ) : (
-                        <View>
-                          {e.inputsValues.endDate !== "" ? (
-                            <Text
-                              style={{
-                                fontSize: personalization.fontSize / 2,
-                                fontFamily: personalization.fontFamily,
-                                fontWeight: 700,
-                                color: personalization.color,
-                              }}
-                            >
-                              Finish date: {e.inputsValues.endDate}
-                            </Text>
-                          ) : (
-                            ""
-                          )}
-                        </View>
-                      )}
-                    </View>
-                  )}
-                  <View style={{ flexDirection: "row" }}>
-                    <Text
-                      style={{
-                        fontSize: personalization.fontSize / 2,
-                        fontFamily: personalization.fontFamily,
-                      }}
-                    >
-                      {e.inputsValues.city}
-                    </Text>
-                  </View>
-                  <Text
-                    style={{
-                      fontSize: personalization.fontSize / 2,
-                      fontFamily: personalization.fontFamily,
-                      color: "#595959",
-                    }}
-                  >
-                    {e.inputsValues.additionalInfo}
-                  </Text>
-                </View>
-              );
-            })}
-          </View>
-        ) : (
-          ""
+        {renderSection("Experience", data.experience, personalization, {
+          headingContainer: styles.headingContainer,
+          headingDot: styles.sectionSquere,
+          dataContainer: styles.dataContainer,
+        })}
+        {renderSection("Education", data.education, personalization, {
+          headingContainer: styles.headingContainer,
+          headingDot: styles.sectionSquere,
+          dataContainer: styles.dataContainer,
+        })}
+
+        {renderSection("Certificates", data.certificates, personalization, {
+          headingContainer: styles.headingContainer,
+          headingDot: styles.sectionSquere,
+          dataContainer: styles.dataContainer,
+        })}
+
+        {renderSection(
+          "Additional Activity",
+          data.additional_activity,
+          personalization,
+          {
+            headingContainer: styles.headingContainer,
+            headingDot: styles.sectionSquere,
+            dataContainer: styles.dataContainer,
+          }
         )}
       </View>
+      {renderFooter(data.footer, personalization)}
     </Page>
   </Document>
 );
-export default PDFPattern2;

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 
-interface IData {
+interface data {
   selectedPattern: number;
 
   photo: string | null;
@@ -12,21 +12,21 @@ interface IData {
   email: string;
   websiteURL: string;
 
-  experience: [];
-  certificates: [];
-  education: [];
-  courses: [];
-  skills: [];
-  achievements: [];
-  hobbys: [];
-  characteristic: [];
-  additionalActivity: [];
+  experience: {}[];
+  education: {}[];
+  skills: {}[];
+  achievements: {}[];
+  hobbys: {}[];
+  certificates: {}[];
+  additional_activity: {}[];
+
+  footer: string;
 }
 
 const UserDataSetContext = createContext({});
 
 export const UserDataSetContextProvider = ({ children }: any) => {
-  const [userDataSet, setUserDataSet] = useState<IData>({
+  const [userDataSet, setUserDataSet] = useState<data>({
     selectedPattern: 1,
 
     photo: "",
@@ -37,14 +37,14 @@ export const UserDataSetContextProvider = ({ children }: any) => {
     websiteURL: "",
 
     experience: [],
-    certificates: [],
     education: [],
-    courses: [],
     skills: [],
     achievements: [],
     hobbys: [],
-    characteristic: [],
-    additionalActivity: [],
+    certificates: [],
+    additional_activity: [],
+
+    footer: "",
   });
 
   return (
