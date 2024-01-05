@@ -2,17 +2,17 @@ import { useState } from "react";
 
 import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";
 
-import { Sidebar } from "../enterData-components/Sidebar";
+import { Sidebar } from "../_enterData/Sidebar";
 
-import { PersonalData } from "../enterData-components/sections/PersonalData";
-import { Experience } from "../enterData-components/sections/Experience";
-import { Education } from "../enterData-components/sections/Education";
-import { Skills } from "../enterData-components/sections/Skills";
-import { Achievements } from "../enterData-components/sections/Achivements";
-import { Hobbys } from "../enterData-components/sections/Hobbys";
-import { Certificates } from "../enterData-components/sections/Certificates";
-import { AdditionalActivity } from "../enterData-components/sections/AdditionalActivity";
-import { Footer } from "../enterData-components/sections/Footer";
+import { PersonalData } from "../_enterData/sections/PersonalData";
+import { Experience } from "../_enterData/sections/Experience";
+import { Education } from "../_enterData/sections/Education";
+import { Skills } from "../_enterData/sections/Skills";
+import { Achievements } from "../_enterData/sections/Achivements";
+import { Hobbys } from "../_enterData/sections/Hobbys";
+import { Certificates } from "../_enterData/sections/Certificates";
+import { AdditionalActivity } from "../_enterData/sections/AdditionalActivity";
+import { Footer } from "../_enterData/sections/Footer";
 
 export const EnterData = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);

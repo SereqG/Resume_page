@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FeatureCard } from "./_SectionsComponents/FeatureCard";
+import { FeatureCard } from "./_sections/FeatureCard";
 
 const styles = {
   CardColumn: "flex w-full flex-col justify-around sm:flex-row",

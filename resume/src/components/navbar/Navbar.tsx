@@ -26,7 +26,7 @@ export const Navbar = () => {
       </Link>
 
       <div className="hidden md:flex ml-[10vw]">
-        <Link href={"/resume-creator"} className="group relative">
+        <Link href={"/resumeCreator"} className="group relative">
           Create CV
           <span className="absolute -bottom-1 left-0 h-px w-0 bg-primary-color transition-all group-hover:w-[50%]"></span>
         </Link>

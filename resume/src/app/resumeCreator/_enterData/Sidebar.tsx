@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { allSectionsList } from "./sections/allSections";
+import { allSectionsList } from "@/data/allSections";
 import { SidebarSection } from "./SidebarSection";
 import { CloseButton } from "@/components/buttons/CloseButton";
 import { useCurrentSectionContext } from "@/context/CurrentSectionProvider";

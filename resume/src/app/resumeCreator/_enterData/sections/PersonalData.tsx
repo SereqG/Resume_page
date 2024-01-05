@@ -5,9 +5,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
-import { formSchema } from "@/validation/resumeCreator/allSections/Schema";
-import { sections } from "./allSections";
+import { sections } from "@/data/allSections";
 import { Section } from "./Section";
+
+import { formSchema } from "@/validation/resumeCreator/allSections/Schema";
 import { personalData } from "@/validation/resumeCreator/allSections/types";
 
 export const PersonalData = () => {
