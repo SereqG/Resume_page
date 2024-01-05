@@ -2,14 +2,14 @@
 
 import { v4 as uuidv4 } from "uuid";
 
-import pattern1 from "@/../public/patterns/pattern1.jpg";
-import pattern2 from "@/../public/patterns/pattern2.jpg";
-import pattern3 from "@/../public/patterns/pattern3.jpg";
+import pattern1 from "@/assets/patterns/pattern1.jpg";
+import pattern2 from "@/assets/patterns/pattern2.jpg";
+import pattern3 from "@/assets/patterns/pattern3.jpg";
 
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
-import { Pattern } from "../selectPattern/Pattern";
+import { Pattern } from "../Pattern";
 
 const styles = {
   buttonBase: "rounded-full p-4",

@@ -3,7 +3,7 @@ import { CgTemplate } from "react-icons/cg";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { MdSaveAlt } from "react-icons/md";
 
-import { MiddleSectionStep } from "./_SectionsComponents/MiddleSectionStep";
+import { MiddleSectionStep } from "./_sections/MiddleSectionStep";
 
 const steps = [
   {

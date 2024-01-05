@@ -2,11 +2,13 @@ import { v4 as uuidv4 } from "uuid";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
+import { Section } from "./Section";
+import { sections } from "@/data/allSections";
+
+import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
+
 import { defaultValuesSkills } from "@/validation/resumeCreator/allSections/Default";
 import { skills } from "@/validation/resumeCreator/allSections/types";
-import { Section } from "./Section";
-import { sections } from "./allSections";
-import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
 export const Skills = () => {
   const { setIsPopupVisible } = usePopupVisibilityContext();

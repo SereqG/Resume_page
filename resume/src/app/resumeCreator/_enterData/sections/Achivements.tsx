@@ -2,40 +2,42 @@ import { v4 as uuidv4 } from "uuid";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
-import { defaultValuesCertificates } from "@/validation/resumeCreator/allSections/Default";
-import { certificates } from "@/validation/resumeCreator/allSections/types";
+
+import { defaultValuesAchievements } from "@/validation/resumeCreator/allSections/Default";
+import { achievements } from "@/validation/resumeCreator/allSections/types";
+
 import { Section } from "./Section";
-import { sections } from "./allSections";
+
 import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
+import { sections } from "@/data/allSections";
 
-export const Certificates = () => {
-  const { setIsPopupVisible } = usePopupVisibilityContext();
+export const Achievements = () => {
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
+  const { setIsPopupVisible } = usePopupVisibilityContext();
 
-  const form = useForm<certificates>({
+  const form = useForm<achievements>({
     mode: "onChange",
-    defaultValues: defaultValuesCertificates,
+    defaultValues: defaultValuesAchievements,
   });
 
-  const onSubmit: SubmitHandler<certificates> = (data) => {
+  const onSubmit: SubmitHandler<achievements> = (data) => {
     setIsPopupVisible(true);
-
     setUserDataSet({
       ...userDataSet,
-      certificates: [
-        ...userDataSet["certificates"],
+      achievements: [
+        ...userDataSet["achievements"],
         { inputsValues: data, id: uuidv4() },
       ],
     });
 
-    form.reset(defaultValuesCertificates);
+    form.reset(defaultValuesAchievements);
   };
 
   return (
     <Section
       form={form}
       onSubmit={onSubmit}
-      inputProps={sections.certificates}
+      inputProps={sections.achievements}
     />
   );
 };

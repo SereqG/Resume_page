@@ -3,8 +3,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
 import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
-import { sections } from "./allSections";
+import { sections } from "@/data/allSections";
 import { Section } from "./Section";
+
 import { footer } from "@/validation/resumeCreator/allSections/types";
 
 export const Footer = () => {

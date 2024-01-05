@@ -2,40 +2,43 @@ import { v4 as uuidv4 } from "uuid";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useUserDataSetContext } from "@/context/ResumeDatasetProvider";
-import { defaultValuesAdditionalActivity } from "@/validation/resumeCreator/allSections/Default";
-import { additionalActivity } from "@/validation/resumeCreator/allSections/types";
-import { Section } from "./Section";
-import { sections } from "./allSections";
-import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
 
-export const AdditionalActivity = () => {
+import { defaultValuesCertificates } from "@/validation/resumeCreator/allSections/Default";
+import { certificates } from "@/validation/resumeCreator/allSections/types";
+
+import { Section } from "./Section";
+
+import { usePopupVisibilityContext } from "@/context/PopupVisibilityProvider";
+import { sections } from "@/data/allSections";
+
+export const Certificates = () => {
   const { setIsPopupVisible } = usePopupVisibilityContext();
   const { userDataSet, setUserDataSet } = useUserDataSetContext();
 
-  const form = useForm<additionalActivity>({
+  const form = useForm<certificates>({
     mode: "onChange",
-    defaultValues: defaultValuesAdditionalActivity,
+    defaultValues: defaultValuesCertificates,
   });
 
-  const onSubmit: SubmitHandler<additionalActivity> = (data) => {
+  const onSubmit: SubmitHandler<certificates> = (data) => {
     setIsPopupVisible(true);
 
     setUserDataSet({
       ...userDataSet,
-      additional_activity: [
-        ...userDataSet["additional_activity"],
+      certificates: [
+        ...userDataSet["certificates"],
         { inputsValues: data, id: uuidv4() },
       ],
     });
 
-    form.reset(defaultValuesAdditionalActivity);
+    form.reset(defaultValuesCertificates);
   };
 
   return (
     <Section
       form={form}
       onSubmit={onSubmit}
-      inputProps={sections.additionalActivity}
+      inputProps={sections.certificates}
     />
   );
 };

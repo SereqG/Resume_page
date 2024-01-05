@@ -22,7 +22,7 @@ export const TopSection = () => {
           <span className={styles.span}>resume</span> with us!
         </h1>
         <Button>
-          <Link href={"/resume-creator"}>Create a resume</Link>
+          <Link href={"/resumeCreator"}>Create a resume</Link>
         </Button>
       </section>
       <section className="hidden lg:block">

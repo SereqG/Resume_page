@@ -1,4 +1,4 @@
-import { Element } from "./topBar/Element";
+import { Element } from "./Element";
 
 interface Props {
   step: number;

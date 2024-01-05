@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { TopBar } from "./_components/TopBar";
-import { BottomBar } from "./_components/BottomBar";
-import { MainSection } from "./_components/MainSection";
+import { TopBar } from "./_topBar/TopBar";
+import { BottomBar } from "./BottomBar";
+import { MainSection } from "./MainSection";
 import Layout from "./layout";
 import { Popup } from "@/components/other/Popup";
 
