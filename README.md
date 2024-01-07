@@ -3,9 +3,10 @@
 ResuME is my personal project that was created for educational purposes and to develop my skills in working with frontend tools. The web application allows users to generate a resume based on a selected template and entered data. While developing the application, I focused on the ability to customize the resume and provide a high level of flexibility, allowing users to adjust their project visually.
 
 ## Table of content
+
 [TOC]
 
-##Getting Started
+## Getting Started
 
 ###  Install
 
