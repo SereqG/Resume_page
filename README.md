@@ -1,11 +1,14 @@
 #ResuME
+
 ResuME is my personal project that was created for educational purposes and to develop my skills in working with frontend tools. The web application allows users to generate a resume based on a selected template and entered data. While developing the application, I focused on the ability to customize the resume and provide a high level of flexibility, allowing users to adjust their project visually.
 
 ##Table of content
 [TOC]
 
 ##Getting Started
+
 ###  Install
+
 - Clone the project
 `git clone https://github.com/SereqG/Resume_page`
 
@@ -19,6 +22,7 @@ ResuME is my personal project that was created for educational purposes and to d
 `npm run dev`
 
 ##Stack
+
 ![Static Badge](https://img.shields.io/badge/html-gray?style=for-the-badge&logo=html5&logoColor=white)
 
 ![Static Badge](https://img.shields.io/badge/JavaScript-gray?style=for-the-badge&logo=javascript&logoColor=white)
@@ -39,6 +43,7 @@ ResuME is my personal project that was created for educational purposes and to d
 ![Static Badge](https://img.shields.io/badge/Framer-gray?style=for-the-badge&logo=framer&logoColor=white)
 
 ##Features
+
 The project was created to improve skills in working with the JavaScript framework Next.js and related technologies. In the process of developing the application, I utilized advanced capabilities provided by the applied technologies. Many months of work resulted in the creation of a useful web application that enables the creation of aesthetically pleasing resumes.
 
 - The homepage welcomes the user and enticingly showcases the application's features. This page has been designed to encourage the user to further explore the application. From here, users can navigate to the main part of the application - the resume generator.
