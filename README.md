@@ -1,8 +1,8 @@
-#ResuME
+# ResuME
 
 ResuME is my personal project that was created for educational purposes and to develop my skills in working with frontend tools. The web application allows users to generate a resume based on a selected template and entered data. While developing the application, I focused on the ability to customize the resume and provide a high level of flexibility, allowing users to adjust their project visually.
 
-##Table of content
+## Table of content
 [TOC]
 
 ##Getting Started
@@ -21,7 +21,7 @@ ResuME is my personal project that was created for educational purposes and to d
 - Run server
 `npm run dev`
 
-##Stack
+## Stack
 
 ![Static Badge](https://img.shields.io/badge/html-gray?style=for-the-badge&logo=html5&logoColor=white)
 
@@ -42,7 +42,7 @@ ResuME is my personal project that was created for educational purposes and to d
 
 ![Static Badge](https://img.shields.io/badge/Framer-gray?style=for-the-badge&logo=framer&logoColor=white)
 
-##Features
+## Features
 
 The project was created to improve skills in working with the JavaScript framework Next.js and related technologies. In the process of developing the application, I utilized advanced capabilities provided by the applied technologies. Many months of work resulted in the creation of a useful web application that enables the creation of aesthetically pleasing resumes.
 
@@ -57,6 +57,6 @@ The project was created to improve skills in working with the JavaScript framewo
 - File download: After completing all the previous steps, users can freely download the result of their work to their computer and enjoy their CV.
 
 
-##Problems that I am aware of.
+## Problems that I am aware of.
 
 - The application creates with Latin characters incorrectly
