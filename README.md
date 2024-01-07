@@ -4,7 +4,7 @@ ResuME is my personal project that was created for educational purposes and to d
 
 ## Table of content
 
-[TOC]
+ [TOC]
 
 ## Getting Started
 
