@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { CgTemplate } from "react-icons/cg";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { MdSaveAlt } from "react-icons/md";
+
 import shape2 from "@/assets/shapes/shape2.png";
 import shape4 from "@/assets/shapes/shape4.png";
 import shape5 from "@/assets/shapes/shape5.png";
