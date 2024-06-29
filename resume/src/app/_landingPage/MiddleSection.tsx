@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { CgTemplate } from "react-icons/cg";
 import { BsFillPersonLinesFill } from "react-icons/bs";
 import { MdSaveAlt } from "react-icons/md";
+import shape2 from "@/assets/shapes/shape2.png";
+import shape4 from "@/assets/shapes/shape4.png";
+import shape5 from "@/assets/shapes/shape5.png";
 
 import { MiddleSectionStep } from "./_sections/MiddleSectionStep";
 
@@ -11,21 +14,21 @@ const steps = [
     stepNumber: 1,
     title: "Choose one of the available templates",
     description: "Choose the one that best suits your needs",
-    imgSrc: "/shapes/shape2.png",
+    imgSrc: shape2,
   },
   {
     icon: BsFillPersonLinesFill,
     stepNumber: 2,
     title: "Enter your personal data",
     description: "Fill all form fields in order to get an accurate resume",
-    imgSrc: "/shapes/shape5.png",
+    imgSrc: shape4,
   },
   {
     icon: MdSaveAlt,
     stepNumber: 3,
     title: "Download and enjoy",
     description: "Your sheet is ready. It is your time to shine!",
-    imgSrc: "/shapes/shape4.png",
+    imgSrc: shape5,
   },
 ];
 
