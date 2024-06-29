@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { IconType } from "react-icons";
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   stepNumber: number;
   title: string;
   description: string;
-  imgSrc: string;
+  imgSrc: StaticImageData;
 }
 
 export const MiddleSectionStep = ({
